@@ -23,7 +23,7 @@ class PopularMemes extends Component {
             style={{
               color: "#004080",
               textAlign: "center",
-              fontFamily: "sans-serif",
+              // fontFamily: "sans-serif",
             }}
           >
             {item.name}
@@ -36,7 +36,7 @@ class PopularMemes extends Component {
 
           <Button title="comments" type="outline" width="50" />
 
-          <Divider />
+          <Divider style={{ width: 500 }} />
         </View>
       );
     };

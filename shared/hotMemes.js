@@ -6,16 +6,16 @@ export const HOTMEMES = [
     image: "/assets/images/soup.png",
     upvote: 0,
     downvote: 0,
-    featured: false,
+    featured: true,
     
   },
   {
     id: 1,
     name: "How I actually sit",
-    image: "/assets/images/sit.JPG",
+    image: "/assets/images/sit.jpg",
     upvote: 0,
     downvote: 0,
-    featured: false,
+    featured: true,
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const HOTMEMES = [
     image: "/assets/images/memelord.jpg",
     upvote: 0,
     downvote: 0,
-    featured: false,
+    featured: true,
   },
   {
     id: 3,
@@ -31,6 +31,6 @@ export const HOTMEMES = [
     image: "./assets/images/handwash.jpg",
     upvote: 0,
     downvote: 0,
-    featured: false,
+    featured: true,
   },
 ];
