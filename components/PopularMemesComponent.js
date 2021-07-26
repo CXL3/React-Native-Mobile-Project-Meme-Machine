@@ -11,7 +11,11 @@ class PopularMemes extends Component {
       hotMemes: HOTMEMES,
     };
   }
+  static navigationOptions = {
+    title: "Popular Memes",
+  };
   render() {
+    // const { navigate } = this.props.navigation;
     const dimensions = Dimensions.get("window");
     const imageHeight = dimensions.width / 680;
     const imageWidth = dimensions.width;
