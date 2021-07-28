@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PopularMemes from "./PopularMemesComponent";
 import Contact from "./ContactComponent";
+import Comments from "./CommentsComponent";
 // import Directory from "./Test";
 import Constants from "expo-constants";
 import { View, Platform } from "react-native";
@@ -11,7 +12,7 @@ import { createAppContainer } from "react-navigation";
 const PopularMemeNavigator = createStackNavigator(
   {
     PopularMemes: { screen: PopularMemes },
-    // Comments: { screen: Comments },
+    Comments: { screen: Comments },
   },
   {
     initialRouteName: "PopularMemes",

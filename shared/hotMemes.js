@@ -7,6 +7,7 @@ export const HOTMEMES = [
     upvote: 0,
     downvote: 0,
     featured: true,
+    comments: "funny, lol"
     
   },
   {
@@ -16,6 +17,7 @@ export const HOTMEMES = [
     upvote: 0,
     downvote: 0,
     featured: true,
+    comments: "true dat"
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ export const HOTMEMES = [
     upvote: 0,
     downvote: 0,
     featured: true,
+    comments: "lol"
   },
   {
     id: 3,
@@ -32,5 +35,6 @@ export const HOTMEMES = [
     upvote: 0,
     downvote: 0,
     featured: true,
+    comments: "..."
   },
 ];
