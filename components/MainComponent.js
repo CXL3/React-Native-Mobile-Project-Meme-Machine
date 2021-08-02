@@ -3,6 +3,7 @@ import PopularMemes from "./PopularMemesComponent";
 import Comments from "./CommentsComponent";
 import Chat from "./ChatComponent";
 import Upload from "./UploadMemeComponent";
+import LogIn from "./LoginComponent";
 // import Directory from "./Test";
 import Constants from "expo-constants";
 import { View, Platform } from "react-native";
@@ -60,11 +61,28 @@ const UploadNavigator = createStackNavigator(
     },
   }
 );
+const LogInNavigator = createStackNavigator(
+  {
+    LogIn: { screen: LogIn },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#ff0000",
+      },
+      headerTintColor: "#000000",
+      headerTitleStyle: {
+        color: "#000000",
+      },
+    },
+  }
+);
 const MainNavigator = createDrawerNavigator(
   {
     PopularMemes: { screen: PopularMemeNavigator },
     Chat: { screen: chatNavigator },
     Upload: { screen: UploadNavigator },
+    LogIn: { screen: LogInNavigator}
   },
   {
     drawerBackgroundColor: "#800000",
