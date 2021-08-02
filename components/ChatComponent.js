@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { ScrollView, Text } from "react-native";
 import { Card } from "react-native-elements";
 
-class Contact extends Component {
+class Chat extends Component {
   static navigationOptions = {
-    title: "Contact Us",
+    title: "Chat",
   };
   render() {
     return (
@@ -22,4 +22,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default Chat;

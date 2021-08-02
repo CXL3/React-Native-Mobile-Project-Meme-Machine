@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PopularMemes from "./PopularMemesComponent";
 import Contact from "./ContactComponent";
 import Comments from "./CommentsComponent";
+import Chat from "./ChatComponent"
 // import Directory from "./Test";
 import Constants from "expo-constants";
 import { View, Platform } from "react-native";
@@ -16,6 +17,22 @@ const PopularMemeNavigator = createStackNavigator(
   },
   {
     initialRouteName: "PopularMemes",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#ff0000",
+      },
+      headerTintColor: "#000000",
+      headerTitleStyle: {
+        color: "#000000",
+      },
+    },
+  }
+);
+const chatNavigator = createStackNavigator(
+  {
+    Chat: { screen: Chat },
+  },
+  {
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: "#ff0000",
@@ -47,6 +64,7 @@ const MainNavigator = createDrawerNavigator(
   {
     PopularMemes: { screen: PopularMemeNavigator },
     Contact: { screen: ContactNavigator },
+    Chat: { screen: chatNavigator },
   },
   {
     drawerBackgroundColor: "#800000",
