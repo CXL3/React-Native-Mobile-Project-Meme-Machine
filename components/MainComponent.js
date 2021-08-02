@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PopularMemes from "./PopularMemesComponent";
-import Contact from "./ContactComponent";
 import Comments from "./CommentsComponent";
-import Chat from "./ChatComponent"
+import Chat from "./ChatComponent";
+import Upload from "./UploadMemeComponent";
 // import Directory from "./Test";
 import Constants from "expo-constants";
 import { View, Platform } from "react-native";
@@ -44,9 +44,9 @@ const chatNavigator = createStackNavigator(
     },
   }
 );
-const ContactNavigator = createStackNavigator(
+const UploadNavigator = createStackNavigator(
   {
-    Contact: { screen: Contact },
+    Upload: { screen: Upload },
   },
   {
     defaultNavigationOptions: {
@@ -63,8 +63,8 @@ const ContactNavigator = createStackNavigator(
 const MainNavigator = createDrawerNavigator(
   {
     PopularMemes: { screen: PopularMemeNavigator },
-    Contact: { screen: ContactNavigator },
     Chat: { screen: chatNavigator },
+    Upload: { screen: UploadNavigator },
   },
   {
     drawerBackgroundColor: "#800000",
