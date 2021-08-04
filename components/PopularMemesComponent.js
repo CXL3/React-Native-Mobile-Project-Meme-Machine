@@ -2,28 +2,45 @@ import React, { Component } from "react";
 import { FlatList, Image, View } from "react-native";
 // import { StyleSheet, Text } from "react-native";
 // import { ListItem } from "react-native-elements";
-import { HOTMEMES } from "../shared/hotMemes";
-import { Dimensions } from "react-native";
-import { Divider, Text, Button } from "react-native-elements";
+
+// import { Dimensions } from "react-native";
+import { Button, Card, CardImage } from "react-native-elements";
+import { connect } from "react-redux";
+import { baseUrl } from "../shared/baseUrl";
+import AutoHeightImage from "react-native-auto-height-image";
+
+const mapStateToProps = (state) => {
+  return {
+    hotMemes: state.hotMemes,
+  };
+};
 
 class PopularMemes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hotMemes: HOTMEMES,
-    };
-  }
   static navigationOptions = {
     title: "Popular Memes",
   };
   render() {
     const { navigate } = this.props.navigation;
-    const dimensions = Dimensions.get("window");
-    const imageHeight = dimensions.width / 680;
-    const imageWidth = dimensions.width;
+    // const dimensions = Dimensions.get("window");
+    // const imageHeight = dimensions.width / 680;
+    // const imageWidth = dimensions.width;
     const renderHotMemesItem = ({ item }) => {
       return (
-        // <ListItem
+        <Card>
+          <Card.Title
+            onPress={() => navigate("Comments", { hotMemeId: item.id })}
+          >
+            {item.name}
+          </Card.Title>
+          
+          <Button
+            title="comments"
+            type="outline"
+            width="50"
+            onPress={() => navigate("Comments", { hotMemeId: item.id })}
+          />
+        </Card>
+        
         //   title={item.name}
         //   onPress={() => navigate("Comments", { hotMemeId: item.id })}
         //   leftAvatar={{ source: require("./images/memelord.jpg") }}
@@ -41,62 +58,47 @@ class PopularMemes extends Component {
         //     </ListItem>
         //   );
         // };
-        // styles = StyleSheet.create({
-        //   subtitleView: {
-        //     flexDirection: "row",
-        //     paddingLeft: 10,
-        //     paddingTop: 5,
-        //   },
-        //   ratingImage: {
-        //     height: 19.21,
-        //     width: 100,
-        //   },
-        //   ratingText: {
-        //     paddingLeft: 10,
-        //     color: "grey",
-        //   },
-        // });
-        <View
-          // onPress={() => navigate("Comments", { hotMemeId: item.id })}
-          style={{ marginTop: 50 }}
-        >
-          <Text
-            h3
-            style={{
-              color: "#004080",
-              textAlign: "center",
-              // fontFamily: "sans-serif",
-            }}
-            onPress={() => navigate("Comments", { hotMemeId: item.id })}
-          >
-            {item.name}
-          </Text>
-          <Divider />
-          <Image
-            source={require("./images/soup.png")}
-            style={{ height: 727 * imageHeight, width: imageWidth }}
-            onPress={() => navigate("Comments", { hotMemeId: item.id })}
-          />
-          <Button
-            title="comments"
-            type="outline"
-            width="50"
-            onPress={() => navigate("Comments", { hotMemeId: item.id })}
-          />
 
-          <Divider style={{ width: 500 }} />
-        </View>
+        // <View
+        //   // onPress={() => navigate("Comments", { hotMemeId: item.id })}
+        //   style={{ marginTop: 50 }}
+        // >
+        //   <Text
+        //     h3
+        //     style={{
+        //       color: "#004080",
+        //       textAlign: "center",
+        //       // fontFamily: "sans-serif",
+        //     }}
+        //     onPress={() => navigate("Comments", { hotMemeId: item.id })}
+        //   >
+        //     {item.name}
+        //   </Text>
+        //   <Divider />
+        //   <Image
+        //     source={require("./images/soup.png")}
+        //     style={{ height: 727 * imageHeight, width: imageWidth }}
+        //     onPress={() => navigate("Comments", { hotMemeId: item.id })}
+        //   />
+        //   <Button
+        //     title="comments"
+        //     type="outline"
+        //     width="50"
+        //     onPress={() => navigate("Comments", { hotMemeId: item.id })}
+        //   />
+
+        //   <Divider style={{ width: 500 }} />
+        // </View>
       );
     };
 
     return (
       <FlatList
-        data={this.state.hotMemes}
+        data={this.props.hotMemes.hotMemes}
         renderItem={renderHotMemesItem}
-        keyExtractor={(hotMeme) => hotMeme.id.toString()}
+        keyExtractor={(item) => item.id.toString()}
       />
     );
   }
 }
-
-export default PopularMemes;
+export default connect(mapStateToProps)(PopularMemes);

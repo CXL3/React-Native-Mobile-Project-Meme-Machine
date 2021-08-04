@@ -5,7 +5,7 @@ export const hotMemes = (
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.ADD_CAMPSITES:
+    case ActionTypes.ADD_HOTMEMES:
       return {
         ...state,
         isLoading: false,
@@ -13,10 +13,10 @@ export const hotMemes = (
         hotMemes: action.payload,
       };
 
-    case ActionTypes.CAMPSITES_LOADING:
+    case ActionTypes.HOTMEMES_LOADING:
       return { ...state, isLoading: true, errMess: null, hotMemes: [] };
 
-    case ActionTypes.CAMPSITES_FAILED:
+    case ActionTypes.HOTMEMES_FAILED:
       return { ...state, isLoading: false, errMess: action.payload };
 
     default:

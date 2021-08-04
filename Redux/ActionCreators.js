@@ -1,9 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
-import * as ActionTypes from './ActionTypes';
-import { baseUrl } from '../shared/baseUrl';
-
 export const fetchComments = () => dispatch => {
     return fetch(baseUrl + 'comments')
         .then(response => {
@@ -34,7 +31,7 @@ export const addComments = comments => ({
     payload: comments
 });
 
-export const fetchCampsites = () => dispatch => {
+export const fetchHotMemes = () => dispatch => {
 
     dispatch(hotMemesLoading());
 
@@ -53,21 +50,21 @@ export const fetchCampsites = () => dispatch => {
                 throw errMess;
             })
         .then(response => response.json())
-        .then(hotMemes => dispatch(addCampsites(hotMemes)))
+        .then(hotMemes => dispatch(addHotMemes(hotMemes)))
         .catch(error => dispatch(hotMemesFailed(error.message)));
 };
 
 export const hotMemesLoading = () => ({
-    type: ActionTypes.CAMPSITES_LOADING
+    type: ActionTypes.HOTMEMES_LOADING
 });
 
 export const hotMemesFailed = errMess => ({
-    type: ActionTypes.CAMPSITES_FAILED,
+    type: ActionTypes.HOTMEMES_FAILED,
     payload: errMess
 });
 
-export const addCampsites = hotMemes => ({
-    type: ActionTypes.ADD_CAMPSITES,
+export const addHotMemes = hotMemes => ({
+    type: ActionTypes.ADD_HOTMEMES,
     payload: hotMemes
 });
 

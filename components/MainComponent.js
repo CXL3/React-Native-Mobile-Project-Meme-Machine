@@ -12,13 +12,19 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  Image,
 } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
+import { connect } from "react-redux";
+import { fetchHotMemes, fetchComments, } from "../redux/ActionCreators";
+
+const mapDispatchToProps = {
+  fetchHotMemes,
+  fetchComments,
+};
 
 const PopularMemeNavigator = createStackNavigator(
   {
@@ -168,6 +174,11 @@ const MainNavigator = createDrawerNavigator(
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
+  componentDidMount() {
+    this.props.fetchHotMemes();
+    this.props.fetchComments();
+  }
+
   render() {
     return (
       <View
@@ -205,4 +216,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export default connect(null, mapDispatchToProps)(Main);
