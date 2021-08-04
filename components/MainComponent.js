@@ -37,16 +37,6 @@ const PopularMemeNavigator = createStackNavigator(
     },
     Comments: {
       screen: Comments,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
     },
   },
   {
@@ -154,7 +144,9 @@ const CustomDrawerContentComponent = (props) => (
     >
       <View style={styles.drawerHeader}>
         <View style={{ flex: 2 }}>
-          <Text style={styles.drawerHeaderText}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meme Machine</Text>
+          <Text style={styles.drawerHeaderText}>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meme Machine
+          </Text>
         </View>
       </View>
       <DrawerItems {...props} />

@@ -1,7 +1,6 @@
 export const HOTMEMES = [
   {
-    id: 0,
-    
+    id: 0, 
     name: "Hot soup",
     image: "/assets/images/soup.png",
     upvote: 0,
