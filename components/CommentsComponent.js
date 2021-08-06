@@ -25,33 +25,6 @@ const mapDispatchToProps = {
     postComment(hotMemeId, author, text),
 };
 
-function RenderMeme({ hotMeme }) {
-  // const { hotMeme } = props;
-  if (hotMeme) {
-    return (
-      <Card>
-        <Card.Title style={(fontSize = 24)}>{hotMeme.name}</Card.Title>
-        <Card.Divider />
-        <Card.Image
-          style={styles.imageStyle}
-          source={{ uri: baseUrl + hotMeme.image }}
-        ></Card.Image>
-
-        {/* <AutoHeightImage width={100} source={{ uri: baseUrl + hotMeme.image }} ></AutoHeightImage> */}
-        {/* <Image source={require("./images/soup.png")}></Image> */}
-        <View>
-          <Button
-            title="Add a comment"
-            type="outline"
-            width="10"
-            onPress={() => props.onShowModal()}
-          />
-        </View>
-      </Card>
-    );
-  }
-  return <View />;
-}
 function RenderComments({ comments }) {
   const renderCommentItem = ({ item }) => {
     return (
@@ -104,6 +77,27 @@ class Comments extends Component {
     title: "Comments",
   };
   render() {
+    const RenderMeme = ({ hotMeme }) => {
+      if (hotMeme) {
+        return (
+          <Card>
+            <Card.Title style={(fontSize = 24)}>{hotMeme.name}</Card.Title>
+            <Card.Divider />
+            <Card.Image
+              style={styles.imageStyle}
+              source={{ uri: baseUrl + hotMeme.image }}
+            ></Card.Image>
+            <Button
+              title="Add a comment"
+              type="outline"
+              onPress={() => this.toggleModal()}
+            />
+          </Card>
+        );
+      }
+      return <View />;
+    };
+
     const hotMemeId = this.props.navigation.getParam("hotMemeId");
     const hotMeme = this.props.hotMemes.hotMemes.filter(
       (hotMeme) => hotMeme.id === hotMemeId
@@ -113,7 +107,8 @@ class Comments extends Component {
     );
     return (
       <ScrollView>
-        <RenderMeme hotMeme={hotMeme} onShowModal={() => this.toggleModal()} />
+        <RenderMeme hotMeme={hotMeme}  />
+
         <RenderComments comments={comments} />
         <Modal
           animationType={"slide"}
@@ -122,6 +117,7 @@ class Comments extends Component {
           onRequestClose={() => this.toggleModal()}
         >
           <View style={styles.modal}>
+            <Text style={styles.modalTitle}>Add a comment</Text>
             <Input
               placeholder="Author"
               leftIcon={{ type: "font-awesome", name: "user-o" }}
@@ -132,14 +128,17 @@ class Comments extends Component {
 
             <Input
               placeholder="Comment"
+              multiline={true}
+              numberOfLines={4}
               leftIcon={{ type: "font-awesome", name: "comment-o" }}
               leftIconContainerStyle={{ paddingRight: 10 }}
               onChangeText={(text) => this.setState({ text: text })}
               value={this.state.text}
             />
 
-            <View>
+            <View style={{ margin: 10 }}>
               <Button
+                style={{ margin: 10 }}
                 onPress={() => {
                   this.handleComment(hotMemeId);
                   this.resetForm();
@@ -147,9 +146,8 @@ class Comments extends Component {
                 color="#5637DD"
                 title="Submit"
               />
-            </View>
-            <View style={{ margin: 10 }}>
               <Button
+                style={{ margin: 10 }}
                 color="#808080"
                 title="Cancel"
                 onPress={() => {
@@ -165,14 +163,28 @@ class Comments extends Component {
   }
 }
 const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    width: null,
+    flex: 1,
+    borderRadius: 4,
+  },
   imageStyle: {
     width: null,
     flex: 1,
     height: 345,
   },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+
+    textAlign: "center",
+
+    marginBottom: 20,
+  },
   modal: {
     justifyContent: "center",
-    margin: 20,
+    marginTop: 100,
   },
 });
 

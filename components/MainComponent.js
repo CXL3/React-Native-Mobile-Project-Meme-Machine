@@ -6,20 +6,14 @@ import Upload from "./UploadMemeComponent";
 import LogIn from "./LoginComponent";
 // import Directory from "./Test";
 import Constants from "expo-constants";
-import {
-  View,
-  Platform,
-  StyleSheet,
-  Text,
-  ScrollView,
-} from "react-native";
+import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
-import { fetchHotMemes, fetchComments, } from "../redux/ActionCreators";
+import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
 
 const mapDispatchToProps = {
   fetchHotMemes,
@@ -206,13 +200,12 @@ const styles = StyleSheet.create({
   },
   drawerHeaderText: {
     color: "#fff",
-    fontSize: 24,
     fontWeight: "bold",
   },
   stackIcon: {
     marginLeft: 10,
     color: "#fff",
-    fontSize: 24,
+    
   },
 });
 
