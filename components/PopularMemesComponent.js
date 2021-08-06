@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FlatList, Image, View } from "react-native";
+import { FlatList, StyleSheet, } from "react-native";
 // import { StyleSheet, Text } from "react-native";
 // import { ListItem } from "react-native-elements";
 
@@ -7,7 +7,7 @@ import { FlatList, Image, View } from "react-native";
 import { Button, Card, CardImage } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-import AutoHeightImage from "react-native-auto-height-image";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -32,7 +32,11 @@ class PopularMemes extends Component {
           >
             {item.name}
           </Card.Title>
-          
+          <Card.Image
+            style={styles.imageStyle}
+            source={{ uri: baseUrl + item.image }}
+            onPress={() => navigate("Comments", { hotMemeId: item.id })}
+          ></Card.Image>
           <Button
             title="comments"
             type="outline"
@@ -40,7 +44,6 @@ class PopularMemes extends Component {
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
           />
         </Card>
-        
         //   title={item.name}
         //   onPress={() => navigate("Comments", { hotMemeId: item.id })}
         //   leftAvatar={{ source: require("./images/memelord.jpg") }}
@@ -101,4 +104,11 @@ class PopularMemes extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  imageStyle: {
+    width: null,
+    flex: 1,
+    height: 345,
+  },
+});
 export default connect(mapStateToProps)(PopularMemes);
