@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { Input, CheckBox, Button } from "react-native-elements";
-import { Divider } from "react-native-elements/dist/divider/Divider";
+import { Input, CheckBox, Button, Divider } from "react-native-elements";
 import * as SecureStore from "expo-secure-store";
 
 class Login extends Component {
@@ -62,7 +61,7 @@ class Login extends Component {
         />
         <Input
           placeholder="Password"
-          leftIcon={{ type: "font-awesome", name: "key" }}
+          leftIcon={{ type: "font-awesome", name: "lock" }}
           onChangeText={(password) => this.setState({ password })}
           value={this.state.password}
           containerStyle={styles.formInput}
@@ -75,14 +74,17 @@ class Login extends Component {
           onPress={() => this.setState({ remember: !this.state.remember })}
           containerStyle={styles.formCheckbox}
         />
-        <View style={styles.formButton}>
+        <View style={{ marginTop: 30 }}>
+          <Button style={{ marginBottom: 20 }} color="#5637DD" title="Log In" />
+
           <Button
+            style={{ marginBottom: 40 }}
             type="outline"
-            onPress={() => this.handleLogin()}
-            title="Login"
+            title="Cancel"
+            onPress={() => navigate("PopularMemes")}
           />
         </View>
-        <Divider />
+        <Divider width={0.2} />
         <View style={styles.formButton}>
           <Button
             type="outline"
@@ -111,18 +113,18 @@ const styles = StyleSheet.create({
     backgroundColor: null,
   },
   formButton: {
-    margin: 40,
+    marginTop: 20,
     backgroundColor: "white",
     color: "white",
     borderRadius: 4,
   },
   text: {
     textAlign: "center",
-    fontSize: 40,
+    fontSize: 30,
     fontFamily: "TrebuchetMS-Bold",
     fontWeight: "bold",
     margin: 40,
-    marginBottom: 70,
+    marginBottom: 40,
   },
 });
 

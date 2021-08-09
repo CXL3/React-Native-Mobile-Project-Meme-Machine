@@ -140,34 +140,7 @@ const LogInNavigator = createStackNavigator(
     },
   }
 );
-// const SignUpNavigator = createStackNavigator(
-//   {
-//     SignUp: {
-//       screen: SignUp,
-//       navigationOptions: ({ navigation }) => ({
-//         headerLeft: (
-//           <Icon
-//             name="list"
-//             type="font-awesome"
-//             iconStyle={styles.stackIcon}
-//             onPress={() => navigation.toggleDrawer()}
-//           />
-//         ),
-//       }),
-//     },
-//   },
-//   {
-//     defaultNavigationOptions: {
-//       headerStyle: {
-//         backgroundColor: "#ff0000",
-//       },
-//       headerTintColor: "#000000",
-//       headerTitleStyle: {
-//         color: "#000000",
-//       },
-//     },
-//   }
-// );
+
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
     <SafeAreaView
@@ -235,6 +208,8 @@ const styles = StyleSheet.create({
   drawerHeaderText: {
     color: "#fff",
     fontWeight: "bold",
+    fontSize: 24,
+    fontFamily:"HelveticaNeue-ThinItalic",
   },
   stackIcon: {
     marginLeft: 10,

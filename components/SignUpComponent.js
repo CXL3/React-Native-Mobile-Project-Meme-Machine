@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { Input, CheckBox, Button } from "react-native-elements";
-import { Divider } from "react-native-elements/dist/divider/Divider";
+import { Input, Button } from "react-native-elements";
 
 class SignUp extends Component {
   constructor(props) {
@@ -10,12 +9,15 @@ class SignUp extends Component {
     this.state = {
       username: "",
       password: "",
+      passwordAgain: "",
     };
   }
   static navigationOptions = {
     title: "SignUp",
   };
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Meme Machine</Text>
@@ -46,17 +48,23 @@ class SignUp extends Component {
         <Input
           placeholder="Verify Password"
           leftIcon={{ type: "font-awesome", name: "lock" }}
-          onChangeText={(password) => this.setState({ password })}
-          value={this.state.password}
+          onChangeText={(passwordAgain) => this.setState({ passwordAgain })}
+          value={this.state.passwordAgain}
           containerStyle={styles.formInput}
           leftIconContainerStyle={styles.formIcon}
         />
-
-        <View style={styles.formButton}>
-          <Button type="outline" title="Submit" />
-        </View>
-        <View style={styles.formButton}>
-          <Button type="outline" title="Cancel" />
+        <View>
+          <Button
+            style={{ marginBottom: 20, marginTop: 70 }}
+            color="#5637DD"
+            title="Submit"
+          />
+          <Button
+            type="outline"
+            title="Cancel"
+            color="#5637DD"
+            onPress={() => navigate("LogIn")}
+          />
         </View>
       </View>
     );
@@ -70,26 +78,14 @@ const styles = StyleSheet.create({
   formIcon: {
     marginRight: 10,
   },
-  formInput: {
-    padding: 10,
-  },
-  formCheckbox: {
-    margin: 10,
-    backgroundColor: null,
-  },
-  formButton: {
-    margin: 20,
-    backgroundColor: "white",
-    color: "white",
-    borderRadius: 4,
-  },
+
   text: {
     textAlign: "center",
-    fontSize: 40,
+    fontSize: 30,
     fontFamily: "TrebuchetMS-Bold",
     fontWeight: "bold",
     margin: 40,
-    marginBottom: 70,
+    marginBottom: 40,
   },
 });
 export default SignUp;

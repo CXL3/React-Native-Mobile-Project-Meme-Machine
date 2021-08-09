@@ -81,7 +81,7 @@ class Comments extends Component {
       if (hotMeme) {
         return (
           <Card>
-            <Card.Title style={(fontSize = 24)}>{hotMeme.name}</Card.Title>
+            <Card.Title style={{ fontSize: 25 }}>{hotMeme.name}</Card.Title>
             <Card.Divider />
             <Card.Image
               style={styles.imageStyle}
