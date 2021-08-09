@@ -107,7 +107,7 @@ class Comments extends Component {
     );
     return (
       <ScrollView>
-        <RenderMeme hotMeme={hotMeme}  />
+        <RenderMeme hotMeme={hotMeme} />
 
         <RenderComments comments={comments} />
         <Modal
@@ -177,9 +177,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 24,
     fontWeight: "bold",
-
     textAlign: "center",
-
     marginBottom: 20,
   },
   modal: {

@@ -4,6 +4,7 @@ import Comments from "./CommentsComponent";
 import Chat from "./ChatComponent";
 import Upload from "./UploadMemeComponent";
 import LogIn from "./LoginComponent";
+import SignUp from "./SignUpComponent";
 // import Directory from "./Test";
 import Constants from "expo-constants";
 import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
@@ -123,6 +124,9 @@ const LogInNavigator = createStackNavigator(
         ),
       }),
     },
+    SignUp: {
+      screen: SignUp,
+    },
   },
   {
     defaultNavigationOptions: {
@@ -136,6 +140,34 @@ const LogInNavigator = createStackNavigator(
     },
   }
 );
+// const SignUpNavigator = createStackNavigator(
+//   {
+//     SignUp: {
+//       screen: SignUp,
+//       navigationOptions: ({ navigation }) => ({
+//         headerLeft: (
+//           <Icon
+//             name="list"
+//             type="font-awesome"
+//             iconStyle={styles.stackIcon}
+//             onPress={() => navigation.toggleDrawer()}
+//           />
+//         ),
+//       }),
+//     },
+//   },
+//   {
+//     defaultNavigationOptions: {
+//       headerStyle: {
+//         backgroundColor: "#ff0000",
+//       },
+//       headerTintColor: "#000000",
+//       headerTitleStyle: {
+//         color: "#000000",
+//       },
+//     },
+//   }
+// );
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
     <SafeAreaView
@@ -188,6 +220,7 @@ class Main extends Component {
 }
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#ff0000",
     flex: 1,
   },
   drawerHeader: {
@@ -196,6 +229,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
+    fontSize: 24,
     flexDirection: "row",
   },
   drawerHeaderText: {
@@ -205,7 +239,6 @@ const styles = StyleSheet.create({
   stackIcon: {
     marginLeft: 10,
     color: "#fff",
-    
   },
 });
 
