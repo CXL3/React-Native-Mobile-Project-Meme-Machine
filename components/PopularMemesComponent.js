@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, View, Text, Header } from "react-native";
-import { Icon, Divider, Image } from "react-native-elements";
+import { FlatList, StyleSheet, View, Text, Share, } from "react-native";
+import { Icon, Image } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 
@@ -8,6 +8,17 @@ const mapStateToProps = (state) => {
   return {
     hotMemes: state.hotMemes,
   };
+};
+const shareMeme = (title, url) => {
+  Share.share(
+    {
+      title: title,
+      message: `Check out this meme----"${title}": ${url}`,
+    },
+    {
+      dialogTitle: "Share " + title,
+    }
+  );
 };
 
 class PopularMemes extends Component {
@@ -38,7 +49,6 @@ class PopularMemes extends Component {
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
           />
           <View style={styles.cardRow}>
-            
             <Icon
               name="arrow-up"
               type="font-awesome"
@@ -73,10 +83,10 @@ class PopularMemes extends Component {
               raised
               size="15"
               reverse
+              onPress={() => shareMeme(item.name, baseUrl + item.image)}
             />
-          
           </View>
-          <View style={styles.dividerView}/>
+          <View style={styles.dividerView} />
         </View>
       );
     };
@@ -102,15 +112,15 @@ const styles = StyleSheet.create({
   titleView: {
     alignItems: "center",
     justifyContent: "center",
-    margin:19,
+    margin: 19,
   },
   titleText: {
     alignItems: "center",
     justifyContent: "center",
     fontSize: 25,
-    
+
     fontFamily: "Futura",
-    fontWeight:"bold",
+    fontWeight: "bold",
   },
   imageStyle: {
     padding: 0,
@@ -122,7 +132,6 @@ const styles = StyleSheet.create({
   dividerView: {
     height: 20,
     backgroundColor: "#e6e6e6",
-
-  }
+  },
 });
 export default connect(mapStateToProps)(PopularMemes);

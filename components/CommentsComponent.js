@@ -28,24 +28,26 @@ const mapDispatchToProps = {
 };
 
 const shareMeme = (title, url) => {
-  Share.share({
+  Share.share(
+    {
       title: title,
-      message: `Check out this meme----${title}: ${url}`,
-      url: url
-  },{
-      dialogTitle: 'Share ' + title
-  });
+      message: `Check out this meme----"${title}": ${url}`,
+    },
+    {
+      dialogTitle: "Share " + title,
+    }
+  );
 };
 
 function RenderComments({ comments }) {
   const renderCommentItem = ({ item }) => {
     return (
       <View style={{ margin: 10 }}>
-        <Text style={{ fontSize: 14 }}>{item.text}</Text>
-
         <Text
-          style={{ fontSize: 12 }}
-        >{`-- ${item.author}, ${item.date}`}</Text>
+          style={{ fontSize: 10, fontWeight: "bold" }}
+        >{` ${item.author}, ${item.date}`}</Text>
+        <Text style={{ fontSize: 18 }}>{item.text}</Text>
+
         <Divider />
       </View>
     );
@@ -71,7 +73,6 @@ class Comments extends Component {
       showModal: false,
     };
   }
-  
 
   toggleModal() {
     this.setState({ showModal: !this.state.showModal });
@@ -138,7 +139,7 @@ class Comments extends Component {
                 raised
                 size="15"
                 reverse
-                onPress={() => shareMeme(hotMeme.name, baseUrl + hotMeme.image)} 
+                onPress={() => shareMeme(hotMeme.name, baseUrl + hotMeme.image)}
               />
             </View>
           </Card>
