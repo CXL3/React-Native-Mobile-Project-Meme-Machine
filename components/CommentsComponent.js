@@ -7,11 +7,12 @@ import {
   StyleSheet,
   Modal,
 } from "react-native";
-import { Card, Button, Input } from "react-native-elements";
+import { Card, Button, Input, Icon } from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postComment } from "../redux/ActionCreators";
+import { hotMemes } from "../redux/hotMemes";
 
 const mapStateToProps = (state) => {
   return {
@@ -87,11 +88,44 @@ class Comments extends Component {
               style={styles.imageStyle}
               source={{ uri: baseUrl + hotMeme.image }}
             ></Card.Image>
-            <Button
-              title="Add a comment"
-              type="outline"
-              onPress={() => this.toggleModal()}
-            />
+            <View style={styles.cardRow}>
+              <Divider />
+              <Icon
+                name="arrow-up"
+                type="font-awesome"
+                raised
+                reverse
+                size="15"
+                color="#9d9fa3"
+              />
+              <Text style={{ marginRight: 10 }}>{hotMeme.upvote}</Text>
+              <Icon
+                name="arrow-down"
+                type="font-awesome"
+                raised
+                reverse
+                size="15"
+                color="#9d9fa3"
+              />
+              <Text style={{ marginRight: 70 }}>{hotMeme.downvote}</Text>
+              <Icon
+                name="pencil"
+                type="font-awesome"
+                raised
+                reverse
+                size="15"
+                color="#9d9fa3"
+                onPress={() => this.toggleModal()}
+              />
+              <Icon
+                name={"share"}
+                type="font-awesome"
+                color="#9d9fa3"
+                raised
+                size="15"
+                reverse
+              />
+            </View>
           </Card>
         );
       }
@@ -163,6 +197,13 @@ class Comments extends Component {
   }
 }
 const styles = StyleSheet.create({
+  cardRow: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 6,
+  },
   CardText: {
     fontSize: 24,
     fontFamily: "Futura",
@@ -177,7 +218,7 @@ const styles = StyleSheet.create({
     width: null,
     flex: 1,
     height: 345,
-    resizeMode:"contain",
+    resizeMode: "contain",
   },
   modalTitle: {
     fontSize: 24,

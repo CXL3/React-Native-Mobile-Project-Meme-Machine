@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 // import { StyleSheet, Text } from "react-native";
 // import { ListItem } from "react-native-elements";
 
 // import { Dimensions } from "react-native";
-import { Button, Card, CardImage } from "react-native-elements";
+import { Card, Icon, Divider } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-
 
 const mapStateToProps = (state) => {
   return {
@@ -26,8 +25,9 @@ class PopularMemes extends Component {
     // const imageWidth = dimensions.width;
     const renderHotMemesItem = ({ item }) => {
       return (
-        <Card >
-          <Card.Title style={styles.CardText}
+        <Card>
+          <Card.Title
+            style={styles.cardText}
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
           >
             {item.name}
@@ -35,64 +35,48 @@ class PopularMemes extends Component {
           <Card.Image
             style={styles.imageStyle}
             source={{ uri: baseUrl + item.image }}
-            resizeMode= "contain"  
+            resizeMode="contain"
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
           ></Card.Image>
-          <Button
-            title="comments"
-            type="outline"
-            width="50"
-            onPress={() => navigate("Comments", { hotMemeId: item.id })}
-          />
+          <View style={styles.cardRow}>
+            <Divider />
+            <Icon
+              name="arrow-up"
+              type="font-awesome"
+              raised
+              reverse
+              size="15"
+              color="#9d9fa3"
+            />
+            <Text style={{ marginRight: 10 }}>{item.upvote}</Text>
+            <Icon
+              name="arrow-down"
+              type="font-awesome"
+              raised
+              reverse
+              size="15"
+              color="#9d9fa3"
+            />
+            <Text style={{ marginRight: 80 }}>{item.downvote}</Text>
+            <Icon
+              name="comments"
+              type="font-awesome"
+              raised
+              reverse
+              size="15"
+              color="#9d9fa3"
+              onPress={() => navigate("Comments", { hotMemeId: item.id })}
+            />
+            <Icon
+              name={"share"}
+              type="font-awesome"
+              color="#9d9fa3"
+              raised
+              size="15"
+              reverse
+            />
+          </View>
         </Card>
-        //   title={item.name}
-        //   onPress={() => navigate("Comments", { hotMemeId: item.id })}
-        //   leftAvatar={{ source: require("./images/memelord.jpg") }}
-        // />
-        //     <ListItem onPress={() => navigate("Comments", { hotMemeId: item.id })}>
-        //       <ListItem.Content>
-        //         <ListItem.Title>{item.name}</ListItem.Title>
-        //         <View style={styles.subtitleView}>
-        //           <Image
-        //             source={require("./images/memelord.jpg")}
-        //             style={styles.ratingImage}
-        //           />
-        //         </View>
-        //       </ListItem.Content>
-        //     </ListItem>
-        //   );
-        // };
-
-        // <View
-        //   // onPress={() => navigate("Comments", { hotMemeId: item.id })}
-        //   style={{ marginTop: 50 }}
-        // >
-        //   <Text
-        //     h3
-        //     style={{
-        //       color: "#004080",
-        //       textAlign: "center",
-        //       // fontFamily: "sans-serif",
-        //     }}
-        //     onPress={() => navigate("Comments", { hotMemeId: item.id })}
-        //   >
-        //     {item.name}
-        //   </Text>
-        //   <Divider />
-        //   <Image
-        //     source={require("./images/soup.png")}
-        //     style={{ height: 727 * imageHeight, width: imageWidth }}
-        //     onPress={() => navigate("Comments", { hotMemeId: item.id })}
-        //   />
-        //   <Button
-        //     title="comments"
-        //     type="outline"
-        //     width="50"
-        //     onPress={() => navigate("Comments", { hotMemeId: item.id })}
-        //   />
-
-        //   <Divider style={{ width: 500 }} />
-        // </View>
       );
     };
 
@@ -106,17 +90,23 @@ class PopularMemes extends Component {
   }
 }
 const styles = StyleSheet.create({
-  CardText: {
-    fontSize:24,
+  cardRow: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 6,
+  },
+  cardText: {
+    fontSize: 24,
     fontFamily: "Futura",
-},
+  },
   imageStyle: {
-    padding:0,
+    padding: 0,
     margin: 0,
     width: null,
     flex: 1,
     height: 365,
-    
   },
 });
 export default connect(mapStateToProps)(PopularMemes);
