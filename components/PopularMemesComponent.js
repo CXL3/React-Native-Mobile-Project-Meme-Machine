@@ -26,8 +26,8 @@ class PopularMemes extends Component {
     // const imageWidth = dimensions.width;
     const renderHotMemesItem = ({ item }) => {
       return (
-        <Card>
-          <Card.Title style={{fontSize :25}}
+        <Card >
+          <Card.Title style={styles.CardText}
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
           >
             {item.name}
@@ -35,6 +35,7 @@ class PopularMemes extends Component {
           <Card.Image
             style={styles.imageStyle}
             source={{ uri: baseUrl + item.image }}
+            resizeMode= "contain"  
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
           ></Card.Image>
           <Button
@@ -105,10 +106,17 @@ class PopularMemes extends Component {
   }
 }
 const styles = StyleSheet.create({
+  CardText: {
+    fontSize:24,
+    fontFamily: "Futura",
+},
   imageStyle: {
+    padding:0,
+    margin: 0,
     width: null,
     flex: 1,
-    height: 300,
+    height: 365,
+    
   },
 });
 export default connect(mapStateToProps)(PopularMemes);
