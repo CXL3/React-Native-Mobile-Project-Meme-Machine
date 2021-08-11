@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
-// import { StyleSheet, Text } from "react-native";
-// import { ListItem } from "react-native-elements";
-
-// import { Dimensions } from "react-native";
-import { Card, Icon, Divider } from "react-native-elements";
+import { FlatList, StyleSheet, View, Text, Header } from "react-native";
+import { Icon, Divider, Image } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 
@@ -25,21 +21,24 @@ class PopularMemes extends Component {
     // const imageWidth = dimensions.width;
     const renderHotMemesItem = ({ item }) => {
       return (
-        <Card>
-          <Card.Title
-            style={styles.cardText}
-            onPress={() => navigate("Comments", { hotMemeId: item.id })}
-          >
-            {item.name}
-          </Card.Title>
-          <Card.Image
+        <View>
+          <View style={styles.titleView}>
+            <Text
+              style={styles.titleText}
+              onPress={() => navigate("Comments", { hotMemeId: item.id })}
+            >
+              {item.name}
+            </Text>
+          </View>
+
+          <Image
             style={styles.imageStyle}
             source={{ uri: baseUrl + item.image }}
-            resizeMode="contain"
+            resizeMode="strech"
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
-          ></Card.Image>
+          />
           <View style={styles.cardRow}>
-            <Divider />
+            
             <Icon
               name="arrow-up"
               type="font-awesome"
@@ -75,8 +74,10 @@ class PopularMemes extends Component {
               size="15"
               reverse
             />
+          
           </View>
-        </Card>
+          <View style={styles.dividerView}/>
+        </View>
       );
     };
 
@@ -96,10 +97,20 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     marginTop: 6,
+    marginBottom: 6,
   },
-  cardText: {
-    fontSize: 24,
+  titleView: {
+    alignItems: "center",
+    justifyContent: "center",
+    margin:19,
+  },
+  titleText: {
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 25,
+    
     fontFamily: "Futura",
+    fontWeight:"bold",
   },
   imageStyle: {
     padding: 0,
@@ -108,5 +119,10 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 365,
   },
+  dividerView: {
+    height: 20,
+    backgroundColor: "#e6e6e6",
+
+  }
 });
 export default connect(mapStateToProps)(PopularMemes);
