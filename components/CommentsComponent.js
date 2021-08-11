@@ -6,6 +6,7 @@ import {
   FlatList,
   StyleSheet,
   Modal,
+  Share,
 } from "react-native";
 import { Card, Button, Input, Icon } from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
@@ -24,6 +25,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   postComment: (hotMemeId, author, text) =>
     postComment(hotMemeId, author, text),
+};
+
+const shareMeme = (title, url) => {
+  Share.share({
+      title: title,
+      message: `Check out this meme----${title}: ${url}`,
+      url: url
+  },{
+      dialogTitle: 'Share ' + title
+  });
 };
 
 function RenderComments({ comments }) {
@@ -60,6 +71,8 @@ class Comments extends Component {
       showModal: false,
     };
   }
+  
+
   toggleModal() {
     this.setState({ showModal: !this.state.showModal });
   }
@@ -125,6 +138,7 @@ class Comments extends Component {
                 raised
                 size="15"
                 reverse
+                onPress={() => shareMeme(hotMeme.name, baseUrl + hotMeme.image)} 
               />
             </View>
           </Card>
