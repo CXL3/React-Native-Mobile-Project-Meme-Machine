@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     height: 365,
   },
   dividerView: {
-    height: 20,
+    height: 10,
     backgroundColor: "#e6e6e6",
   },
 });
