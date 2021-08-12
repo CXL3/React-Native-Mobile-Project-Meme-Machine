@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import { Button, Input, Image } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
@@ -18,25 +18,48 @@ class Upload extends Component {
     title: "Upload",
   };
   getImageFromCamera = async () => {
-    const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
+    const mediaPermission = await Permissions.askAsync(Permissions.CAMERA);
     const cameraRollPermission = await Permissions.askAsync(
       Permissions.CAMERA_ROLL
     );
 
     if (
-      cameraPermission.status === "granted" &&
+      mediaPermission.status === "granted" &&
       cameraRollPermission.status === "granted"
     ) {
-      const capturedImage = await ImagePicker.launchImageLibraryAsync({
+      const importImage = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
         aspect: [1, 1],
       });
-      if (!capturedImage.cancelled) {
-        console.log(capturedImage);
-        this.setState({ imageUrl: capturedImage.uri });
+      if (!importImage.cancelled) {
+        console.log(importImage);
+        this.setState({ imageUrl: importImage.uri });
       }
     }
   };
+  resetForm() {
+    this.setState({
+      newTitle: "",
+      imageUrl: baseUrl + "images/sample.jpg",
+    });
+  }
+  handleAlert() {
+    Alert.alert(
+      "Alert",
+      "discard the upload?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => this.resetForm(),
+        },
+      ],
+      { cancelable: false }
+    );
+  }
   render() {
     return (
       <ScrollView>
@@ -60,7 +83,12 @@ class Upload extends Component {
           <Image source={{ uri: this.state.imageUrl }} style={styles.image} />
         </View>
         <Button style={styles.formButton} title="Post" />
-        <Button style={styles.formButton} type="outline" title="Cancel" />
+        <Button
+          style={styles.formButton}
+          type="outline"
+          title="Cancel"
+          onPress={() => this.handleAlert()}
+        />
       </ScrollView>
     );
   }
