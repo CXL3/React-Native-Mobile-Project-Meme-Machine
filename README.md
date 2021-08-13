@@ -12,6 +12,7 @@ I used the following:
 
 - { FlatList, StyleSheet, View, Text, Share, ScrollView, Alert, Modal } from "react-native";
 - ImagePicker from "expo-image-picker"
+- json-server
 - SafeAreaView and platform
 
 
