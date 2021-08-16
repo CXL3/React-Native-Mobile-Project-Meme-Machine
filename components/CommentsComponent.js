@@ -100,7 +100,7 @@ class Comments extends Component {
             <Card.Divider />
             <Card.Image
               style={styles.imageStyle}
-              resizeMode="strech"
+     
               source={{ uri: baseUrl + hotMeme.image }}
             ></Card.Image>
             <View style={styles.cardRow}>

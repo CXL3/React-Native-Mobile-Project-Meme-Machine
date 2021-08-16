@@ -45,7 +45,7 @@ class PopularMemes extends Component {
           <Image
             style={styles.imageStyle}
             source={{ uri: baseUrl + item.image }}
-            resizeMode="strech"
+            resizeMode="stretch"
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
           />
           <View style={styles.cardRow}>
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontSize: 25,
-
     fontFamily: "Futura",
     fontWeight: "bold",
   },

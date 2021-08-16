@@ -8,6 +8,7 @@ import Loading from "./components/LoadingComponent";
 const { persistor, store } = ConfigureStore();
 
 export default function App() {
+  console.disableYellowBox = true; 
   return (
     <Provider store={store}>
       <PersistGate loading={<Loading />} persistor={persistor}>

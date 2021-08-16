@@ -10,11 +10,12 @@ import Constants from "expo-constants";
 import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
 import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 
 const mapDispatchToProps = {
   fetchHotMemes,
@@ -124,6 +125,7 @@ const LogInNavigator = createStackNavigator(
         ),
       }),
     },
+
     SignUp: {
       screen: SignUp,
     },
@@ -158,8 +160,27 @@ const CustomDrawerContentComponent = (props) => (
     </SafeAreaView>
   </ScrollView>
 );
+const MainTabNavigator = createBottomTabNavigator(
+  {
+    Memes: { screen: PopularMemeNavigator },
+    Chat: { screen: chatNavigator },
+    Upload: { screen: UploadNavigator },
+    LogIn: { screen: LogInNavigator },
+  },
+  {
+    tabBarOptions: {
+      activeBackgroundColor: "#faf8f5",
+      inactiveBackgroundColor: "#fffefc",
+      activeTintColor: "#050302",
+      inactiveTintColor: "#808080",
+      labelStyle: { fontSize: 18 },
+    },
+  }
+);
 const MainNavigator = createDrawerNavigator(
   {
+    Home: { screen: MainTabNavigator },
+
     PopularMemes: { screen: PopularMemeNavigator },
     Chat: { screen: chatNavigator },
     Upload: { screen: UploadNavigator },
@@ -170,6 +191,7 @@ const MainNavigator = createDrawerNavigator(
     contentComponent: CustomDrawerContentComponent,
   }
 );
+
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
@@ -184,6 +206,7 @@ class Main extends Component {
         style={{
           flex: 1,
           paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
+          paddingBottom: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
         }}
       >
         <AppNavigator />
@@ -209,7 +232,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 24,
-    fontFamily:"HelveticaNeue-ThinItalic",
+    fontFamily: "HelveticaNeue-ThinItalic",
   },
   stackIcon: {
     marginLeft: 10,
