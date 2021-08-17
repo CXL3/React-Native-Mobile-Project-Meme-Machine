@@ -10,7 +10,7 @@ import Constants from "expo-constants";
 import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
@@ -177,22 +177,21 @@ const MainTabNavigator = createBottomTabNavigator(
     },
   }
 );
-const MainNavigator = createDrawerNavigator(
-  {
-    Home: { screen: MainTabNavigator },
+// const MainNavigator = createDrawerNavigator(
+//   {
+//     PopularMemes: { screen: PopularMemeNavigator },
+//     Chat: { screen: chatNavigator },
+//     Upload: { screen: UploadNavigator },
+//     LogIn: { screen: LogInNavigator },
+//     0: { screen: MainTabNavigator },
+//   },
+//   {
+//     drawerBackgroundColor: "#ffffff",
+//     contentComponent: CustomDrawerContentComponent,
+//   }
+// );
 
-    PopularMemes: { screen: PopularMemeNavigator },
-    Chat: { screen: chatNavigator },
-    Upload: { screen: UploadNavigator },
-    LogIn: { screen: LogInNavigator },
-  },
-  {
-    drawerBackgroundColor: "#ffffff",
-    contentComponent: CustomDrawerContentComponent,
-  }
-);
-
-const AppNavigator = createAppContainer(MainNavigator);
+const AppNavigator = createAppContainer(MainTabNavigator);
 
 class Main extends Component {
   componentDidMount() {
