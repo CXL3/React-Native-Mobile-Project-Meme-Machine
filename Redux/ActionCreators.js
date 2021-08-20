@@ -91,13 +91,19 @@ export const addHotMemes = (hotMemes) => ({
   payload: hotMemes,
 });
 
-export const postUpvote = (hotMemeId) => (dispatch) => {
-  setTimeout(() => {
-    dispatch(addUpvote(hotMemeId));
-  }, 2000);
+export const postUpvote = (hotMemeId, upvote) => (dispatch) => {
+  // const newUpvote = {
+  //   hotMemeId,
+  //   upvote = upovte.toISOString()+1,
+  // };
+  setTimeout(() => dispatch(addUpvote(newUpvote)), 500);
 };
 
-export const addupvote = (hotMemeId) => ({
+export const addUpvote = (hotMemeId) => ({
+  type: ActionTypes.ADD_UPVOTE,
+  payload: hotMemeId,
+});
+export const deleteUpvote = (hotMemeId) => ({
   type: ActionTypes.ADD_UPVOTE,
   payload: hotMemeId,
 });

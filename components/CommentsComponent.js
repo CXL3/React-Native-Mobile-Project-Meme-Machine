@@ -12,9 +12,9 @@ import { Card, Button, Input, Icon } from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-import { postComment } from "../redux/ActionCreators";
+import { postComment, postUpvote } from "../redux/ActionCreators";
 import { hotMemes } from "../redux/hotMemes";
-import { postUpvote } from "../redux/ActionCreators";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -112,16 +112,16 @@ class Comments extends Component {
             <View style={styles.cardRow}>
               <Divider />
               <Icon
-                name="arrow-up"
+                name={hotMeme.upvote ? "arrow-up" : "heart"}
                 type="font-awesome"
                 raised
                 reverse
                 size="15"
                 color="#9d9fa3"
                 onPress={() =>
-                  props.upvote
+                  hotMeme.upvote
                     ? console.log("Already set as a upvote")
-                    : props.markUpvote()
+                    : this.markUpvote()
                 }
               />
               <Text style={{ marginRight: 10 }}>{hotMeme.upvote}</Text>
@@ -166,6 +166,8 @@ class Comments extends Component {
     const comments = this.props.comments.comments.filter(
       (comment) => comment.hotMemeId === hotMemeId
     );
+
+    
     return (
       <ScrollView>
         <RenderMeme
