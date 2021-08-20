@@ -7,6 +7,7 @@ class SignUp extends Component {
     super(props);
 
     this.state = {
+      email: "",
       username: "",
       password: "",
       passwordAgain: "",
@@ -24,7 +25,7 @@ class SignUp extends Component {
         <Input
           placeholder="Email"
           leftIcon={{ type: "font-awesome", name: "envelope" }}
-          onChangeText={(username) => this.setState({ username })}
+          onChangeText={(email) => this.setState({ email})}
           value={this.state.username}
           containerStyle={styles.formInput}
           leftIconContainerStyle={styles.formIcon}

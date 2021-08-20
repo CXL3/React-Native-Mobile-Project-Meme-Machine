@@ -1,5 +1,6 @@
 import * as ActionTypes from "./ActionTypes";
 import { baseUrl } from "../shared/baseUrl";
+import { hotMemes } from "./hotMemes";
 
 export const fetchComments = () => (dispatch) => {
   return fetch(baseUrl + "comments")
@@ -88,4 +89,15 @@ export const hotMemesFailed = (errMess) => ({
 export const addHotMemes = (hotMemes) => ({
   type: ActionTypes.ADD_HOTMEMES,
   payload: hotMemes,
+});
+
+export const postUpvote = (hotMemeId) => (dispatch) => {
+  setTimeout(() => {
+    dispatch(addUpvote(hotMemeId));
+  }, 2000);
+};
+
+export const addupvote = (hotMemeId) => ({
+  type: ActionTypes.ADD_UPVOTE,
+  payload: hotMemeId,
 });

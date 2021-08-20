@@ -5,3 +5,5 @@ export const HOTMEMES_FAILED = 'HOTMEMES_FAILED';
 export const ADD_COMMENTS = 'ADD_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const COMMENTS_FAILED = 'COMMENTS_FAILED';
+
+export const ADD_UPVOTE = 'ADD_UPVOTE';

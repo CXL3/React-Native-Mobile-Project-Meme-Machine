@@ -14,17 +14,20 @@ import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postComment } from "../redux/ActionCreators";
 import { hotMemes } from "../redux/hotMemes";
+import { postUpvote } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
   return {
     hotMemes: state.hotMemes,
     comments: state.comments,
+    upvotes: state.upvotes,
   };
 };
 
 const mapDispatchToProps = {
   postComment: (hotMemeId, author, text) =>
     postComment(hotMemeId, author, text),
+  postUpvote: (hotMemeId) => postUpvote(hotMemeId),
 };
 
 const shareMeme = (title, url) => {
@@ -88,6 +91,10 @@ class Comments extends Component {
       text: "",
     });
   }
+
+  markUpvote(hotMemeId) {
+    this.props.postUpvote(hotMemeId);
+  }
   static navigationOptions = {
     title: "Comments",
   };
@@ -100,7 +107,6 @@ class Comments extends Component {
             <Card.Divider />
             <Card.Image
               style={styles.imageStyle}
-     
               source={{ uri: baseUrl + hotMeme.image }}
             ></Card.Image>
             <View style={styles.cardRow}>
@@ -112,6 +118,11 @@ class Comments extends Component {
                 reverse
                 size="15"
                 color="#9d9fa3"
+                onPress={() =>
+                  props.upvote
+                    ? console.log("Already set as a upvote")
+                    : props.markUpvote()
+                }
               />
               <Text style={{ marginRight: 10 }}>{hotMeme.upvote}</Text>
               <Icon
@@ -157,7 +168,11 @@ class Comments extends Component {
     );
     return (
       <ScrollView>
-        <RenderMeme hotMeme={hotMeme} />
+        <RenderMeme
+          hotMeme={hotMeme}
+          upvote={this.props.upvotes.includes(hotMemeId)}
+          markUpvote={() => this.markUpvote(hotMemeId)}
+        />
 
         <RenderComments comments={comments} />
         <Modal

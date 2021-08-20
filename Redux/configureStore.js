@@ -5,18 +5,20 @@ import { hotMemes } from "./hotMemes";
 import { comments } from "./comments";
 import { persistStore, persistCombineReducers } from "redux-persist";
 import storage from "redux-persist/es/storage";
+import { upvotes } from "./upvote";
 
 const config = {
-  key: 'root',
+  key: "root",
   storage,
-  debug: true
-}
+  debug: true,
+};
 
 export const ConfigureStore = () => {
   const store = createStore(
     persistCombineReducers(config, {
       hotMemes,
-      comments
+      comments,
+      upvotes,
     }),
     applyMiddleware(thunk, logger)
   );
