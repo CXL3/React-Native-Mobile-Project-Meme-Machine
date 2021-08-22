@@ -8,7 +8,6 @@ import LogIn from "./LoginComponent";
 import SignUp from "./SignUpComponent";
 import Constants from "expo-constants";
 import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
-import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
@@ -16,132 +15,147 @@ import { connect } from "react-redux";
 import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 const mapDispatchToProps = {
   fetchHotMemes,
   fetchComments,
 };
 
-const PopularMemeNavigator = createStackNavigator(
-  {
-    PopularMemes: {
-      screen: PopularMemes,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
-    },
-    Comments: {
-      screen: Comments,
-    },
-  },
-  {
-    initialRouteName: "PopularMemes",
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#ff0000",
-      },
-      headerTintColor: "#000000",
-      headerTitleStyle: {
-        color: "#000000",
-      },
-    },
-  }
-);
-const chatNavigator = createStackNavigator(
-  {
-    Chat: {
-      screen: Chat,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#ff0000",
-      },
-      headerTintColor: "#000000",
-      headerTitleStyle: {
-        color: "#000000",
-      },
-    },
-  }
-);
-const UploadNavigator = createStackNavigator(
-  {
-    Upload: {
-      screen: Upload,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#ff0000",
-      },
-      headerTintColor: "#000000",
-      headerTitleStyle: {
-        color: "#000000",
-      },
-    },
-  }
-);
-const LogInNavigator = createStackNavigator(
-  {
-    LogIn: {
-      screen: LogIn,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
-    },
+const Stack = createStackNavigator();
 
-    SignUp: {
-      screen: SignUp,
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#ff0000",
-      },
-      headerTintColor: "#000000",
-      headerTitleStyle: {
-        color: "#000000",
-      },
-    },
-  }
-);
+function MyStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="PopularMemes" component={PopularMemeNavigator} />
+      <Stack.Screen name="Chat" component={chatNavigator} />
+      <Stack.Screen name="Upload" component={UploadNavigator} />
+      <Stack.Screen name="LogIn" component={LogInNavigator} />
+    </Stack.Navigator>
+  );
+}
+
+// const PopularMemeNavigator = createStackNavigator(
+//   {
+//     PopularMemes: {
+//       screen: PopularMemes,
+//       navigationOptions: ({ navigation }) => ({
+//         headerLeft: (
+//           <Icon
+//             name="list"
+//             type="font-awesome"
+//             iconStyle={styles.stackIcon}
+//             onPress={() => navigation.toggleStack()}
+//           />
+//         ),
+//       }),
+//     },
+//     Comments: {
+//       screen: Comments,
+//     },
+//   },
+//   {
+//     initialRouteName: "PopularMemes",
+//     defaultNavigationOptions: {
+//       headerStyle: {
+//         backgroundColor: "#ff0000",
+//       },
+//       headerTintColor: "#000000",
+//       headerTitleStyle: {
+//         color: "#000000",
+//       },
+//     },
+//   }
+// );
+// const chatNavigator = createStackNavigator(
+//   {
+//     Chat: {
+//       screen: Chat,
+//       navigationOptions: ({ navigation }) => ({
+//         headerLeft: (
+//           <Icon
+//             name="list"
+//             type="font-awesome"
+//             iconStyle={styles.stackIcon}
+//             onPress={() => navigation.toggleDrawer()}
+//           />
+//         ),
+//       }),
+//     },
+//   },
+//   {
+//     defaultNavigationOptions: {
+//       headerStyle: {
+//         backgroundColor: "#ff0000",
+//       },
+//       headerTintColor: "#000000",
+//       headerTitleStyle: {
+//         color: "#000000",
+//       },
+//     },
+//   }
+// );
+// const UploadNavigator = createStackNavigator(
+//   {
+//     Upload: {
+//       screen: Upload,
+//       navigationOptions: ({ navigation }) => ({
+//         headerLeft: (
+//           <Icon
+//             name="list"
+//             type="font-awesome"
+//             iconStyle={styles.stackIcon}
+//             onPress={() => navigation.toggleDrawer()}
+//           />
+//         ),
+//       }),
+//     },
+//   },
+//   {
+//     defaultNavigationOptions: {
+//       headerStyle: {
+//         backgroundColor: "#ff0000",
+//       },
+//       headerTintColor: "#000000",
+//       headerTitleStyle: {
+//         color: "#000000",
+//       },
+//     },
+//   }
+// );
+// const LogInNavigator = createStackNavigator(
+//   {
+//     LogIn: {
+//       screen: LogIn,
+//       navigationOptions: ({ navigation }) => ({
+//         headerLeft: (
+//           <Icon
+//             name="list"
+//             type="font-awesome"
+//             iconStyle={styles.stackIcon}
+//             onPress={() => navigation.toggleDrawer()}
+//           />
+//         ),
+//       }),
+//     },
+
+//     SignUp: {
+//       screen: SignUp,
+//     },
+//   },
+//   {
+//     defaultNavigationOptions: {
+//       headerStyle: {
+//         backgroundColor: "#ff0000",
+//       },
+//       headerTintColor: "#000000",
+//       headerTitleStyle: {
+//         color: "#000000",
+//       },
+//     },
+//   }
+// );
 
 // const CustomDrawerContentComponent = (props) => (
 //   <ScrollView>
