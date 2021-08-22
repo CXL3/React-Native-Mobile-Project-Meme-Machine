@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 import React, { Component } from "react";
 import PopularMemes from "./PopularMemesComponent";
 import Comments from "./CommentsComponent";
@@ -6,17 +6,16 @@ import Chat from "./ChatComponent";
 import Upload from "./UploadMemeComponent";
 import LogIn from "./LoginComponent";
 import SignUp from "./SignUpComponent";
-// import Directory from "./Test";
 import Constants from "expo-constants";
 import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
-import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
-import { createAppContainer } from "react-navigation";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
 import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
-import { createBottomTabNavigator } from "react-navigation-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const mapDispatchToProps = {
   fetchHotMemes,
@@ -144,40 +143,53 @@ const LogInNavigator = createStackNavigator(
   }
 );
 
-const CustomDrawerContentComponent = (props) => (
-  <ScrollView>
-    <SafeAreaView
-      style={styles.container}
-      forceInset={{ top: "always", horizontal: "never" }}
-    >
-      <View style={styles.drawerHeader}>
-        <View style={{ flex: 2 }}>
-          <Text style={styles.drawerHeaderText}>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meme Machine
-          </Text>
-        </View>
-      </View>
-      <DrawerItems {...props} />
-    </SafeAreaView>
-  </ScrollView>
-);
-const MainTabNavigator = createBottomTabNavigator(
-  {
-    Memes: { screen: PopularMemeNavigator },
-    Chat: { screen: chatNavigator },
-    Upload: { screen: UploadNavigator },
-    LogIn: { screen: LogInNavigator },
-  },
-  {
-    tabBarOptions: {
-      activeBackgroundColor: "#faf8f5",
-      inactiveBackgroundColor: "#fffefc",
-      activeTintColor: "#050302",
-      inactiveTintColor: "#808080",
-      labelStyle: { fontSize: 18 },
-    },
-  }
-);
+// const CustomDrawerContentComponent = (props) => (
+//   <ScrollView>
+//     <SafeAreaView
+//       style={styles.container}
+//       forceInset={{ top: "always", horizontal: "never" }}
+//     >
+//       <View style={styles.drawerHeader}>
+//         <View style={{ flex: 2 }}>
+//           <Text style={styles.drawerHeaderText}>
+//             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meme Machine
+//           </Text>
+//         </View>
+//       </View>
+//       <DrawerItems {...props} />
+//     </SafeAreaView>
+//   </ScrollView>
+// );
+// const MainTabNavigator = createBottomTabNavigator(
+//   {
+//     Memes: { screen: PopularMemeNavigator },
+//     Chat: { screen: chatNavigator },
+//     Upload: { screen: UploadNavigator },
+//     LogIn: { screen: LogInNavigator },
+//   },
+//   {
+//     tabBarOptions: {
+//       activeBackgroundColor: "#faf8f5",
+//       inactiveBackgroundColor: "#fffefc",
+//       activeTintColor: "#050302",
+//       inactiveTintColor: "#808080",
+//       labelStyle: { fontSize: 18 },
+//     },
+//   }
+// );
+const Tab = createBottomTabNavigator();
+
+function BottomTab() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Memes" component={PopularMemeNavigator} />
+      <Tab.Screen name="Chat" component={chatNavigator} />
+      <Tab.Screen name="Upload" component={UploadNavigator} />
+      <Tab.Screen name="LogIn" component={LogInNavigator} />
+    </Tab.Navigator>
+  );
+}
+
 // const MainNavigator = createDrawerNavigator(
 //   {
 //     PopularMemes: { screen: PopularMemeNavigator },
@@ -194,7 +206,7 @@ const MainTabNavigator = createBottomTabNavigator(
 
 const Drawer = createDrawerNavigator();
 
-function MyDrawer() {
+function SideDrawer() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="PopularMemes" component={PopularMemeNavigator} />
@@ -205,7 +217,7 @@ function MyDrawer() {
   );
 }
 
-const AppNavigator = createAppContainer(MainTabNavigator);
+// const AppNavigator = createAppContainer(MainTabNavigator);
 
 class Main extends Component {
   componentDidMount() {
@@ -222,7 +234,9 @@ class Main extends Component {
           paddingBottom: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
         }}
       >
-        <AppNavigator />
+        <NavigationContainer>
+          <BottomTab />
+        </NavigationContainer>
       </View>
     );
   }
