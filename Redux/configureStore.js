@@ -3,9 +3,10 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { hotMemes } from "./hotMemes";
 import { comments } from "./comments";
+import { upvotes } from "./upvotes";
 import { persistStore, persistCombineReducers } from "redux-persist";
 import storage from "redux-persist/es/storage";
-import { upvotes } from "./upvote";
+
 
 const config = {
   key: "root",

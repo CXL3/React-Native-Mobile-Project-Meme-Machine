@@ -7,3 +7,4 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const COMMENTS_FAILED = 'COMMENTS_FAILED';
 
 export const ADD_UPVOTE = 'ADD_UPVOTE';
+export const DELETE_UPVOTE = 'DELETE_UPVOTE';

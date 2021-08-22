@@ -13,7 +13,7 @@ import { Divider } from "react-native-elements/dist/divider/Divider";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postComment, postUpvote } from "../redux/ActionCreators";
-import { hotMemes } from "../redux/hotMemes";
+
 
 
 const mapStateToProps = (state) => {
@@ -74,6 +74,7 @@ class Comments extends Component {
       author: "",
       text: "",
       showModal: false,
+      upvote:"",
     };
   }
 
@@ -89,6 +90,7 @@ class Comments extends Component {
     this.setState({
       author: "",
       text: "",
+      
     });
   }
 
@@ -112,7 +114,8 @@ class Comments extends Component {
             <View style={styles.cardRow}>
               <Divider />
               <Icon
-                name={hotMeme.upvote ? "arrow-up" : "heart"}
+                // name={hotMeme.upvote ? "arrow-up" : "heart"}
+                name="arrow-up"
                 type="font-awesome"
                 raised
                 reverse

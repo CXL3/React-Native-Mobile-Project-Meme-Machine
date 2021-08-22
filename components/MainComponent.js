@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { Component } from "react";
 import PopularMemes from "./PopularMemesComponent";
 import Comments from "./CommentsComponent";
@@ -183,13 +184,26 @@ const MainTabNavigator = createBottomTabNavigator(
 //     Chat: { screen: chatNavigator },
 //     Upload: { screen: UploadNavigator },
 //     LogIn: { screen: LogInNavigator },
-//     0: { screen: MainTabNavigator },
+
 //   },
 //   {
 //     drawerBackgroundColor: "#ffffff",
 //     contentComponent: CustomDrawerContentComponent,
 //   }
 // );
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="PopularMemes" component={PopularMemeNavigator} />
+      <Drawer.Screen name="Chat" component={chatNavigator} />
+      <Drawer.Screen name="Upload" component={UploadNavigator} />
+      <Drawer.Screen name="LogIn" component={LogInNavigator} />
+    </Drawer.Navigator>
+  );
+}
 
 const AppNavigator = createAppContainer(MainTabNavigator);
 
