@@ -9,14 +9,13 @@ import SignUp from "./SignUpComponent";
 import Constants from "expo-constants";
 import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Icon } from "react-native-elements";
+// import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
 import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from '@react-navigation/stack';
-
+import { createStackNavigator } from "@react-navigation/stack";
 
 const mapDispatchToProps = {
   fetchHotMemes,
@@ -25,13 +24,28 @@ const mapDispatchToProps = {
 
 const Stack = createStackNavigator();
 
-function MyStack() {
+function StackNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="PopularMemes" component={PopularMemeNavigator} />
-      <Stack.Screen name="Chat" component={chatNavigator} />
-      <Stack.Screen name="Upload" component={UploadNavigator} />
-      <Stack.Screen name="LogIn" component={LogInNavigator} />
+    <Stack.Navigator
+      initialRouteName="BottomTab"
+      // screenOptions={{
+      //   headerMode: "screen",
+      //   headerTintColor: "white",
+      //   headerStyle: { backgroundColor: "tomato" },
+      // }}
+    >
+      <Stack.Screen
+        name="BottomTab"
+        component={BottomTab}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen name="PopularMemes" component={PopularMemes} />
+      <Stack.Screen name="Comments" component={Comments} />
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Upload" component={Upload} />
+      <Stack.Screen name="LogIn" component={LogIn} />
+      <Stack.Screen name="SignUp" component={SignUp} />
     </Stack.Navigator>
   );
 }
@@ -196,10 +210,10 @@ const Tab = createBottomTabNavigator();
 function BottomTab() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Memes" component={PopularMemeNavigator} />
-      <Tab.Screen name="Chat" component={chatNavigator} />
-      <Tab.Screen name="Upload" component={UploadNavigator} />
-      <Tab.Screen name="LogIn" component={LogInNavigator} />
+      <Tab.Screen name="Memes" component={MemesDrawer} options={{ headerShown: false }} />
+      <Tab.Screen name="Chat" component={ChatDrawer} options={{ headerShown: false }} />
+      <Tab.Screen name="Upload" component={UploadDrawer} options={{ headerShown: false }} />
+      <Tab.Screen name="LogIn" component={LogInDrawer} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
@@ -220,17 +234,44 @@ function BottomTab() {
 
 const Drawer = createDrawerNavigator();
 
-function SideDrawer() {
+function MemesDrawer() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="PopularMemes" component={PopularMemeNavigator} />
-      <Drawer.Screen name="Chat" component={chatNavigator} />
-      <Drawer.Screen name="Upload" component={UploadNavigator} />
-      <Drawer.Screen name="LogIn" component={LogInNavigator} />
+      <Drawer.Screen name="PopularMemes" component={PopularMemes} />
+      <Drawer.Screen name="Chat" component={Chat} />
+      <Drawer.Screen name="Upload" component={Upload} />
+      <Drawer.Screen name="LogIn" component={LogIn} />
     </Drawer.Navigator>
   );
 }
-
+function ChatDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="PopularMemes" component={PopularMemes} />
+      <Drawer.Screen name="Chat" component={Chat} />
+      <Drawer.Screen name="Upload" component={Upload} />
+      <Drawer.Screen name="LogIn" component={LogIn} />
+    </Drawer.Navigator>
+  );
+}function UploadDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="PopularMemes" component={PopularMemes} />
+      <Drawer.Screen name="Chat" component={Chat} />
+      <Drawer.Screen name="Upload" component={Upload} />
+      <Drawer.Screen name="LogIn" component={LogIn} />
+    </Drawer.Navigator>
+  );
+}function LogInDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="PopularMemes" component={PopularMemes} />
+      <Drawer.Screen name="Chat" component={Chat} />
+      <Drawer.Screen name="Upload" component={Upload} />
+      <Drawer.Screen name="LogIn" component={LogIn} />
+    </Drawer.Navigator>
+  );
+}
 // const AppNavigator = createAppContainer(MainTabNavigator);
 
 class Main extends Component {
@@ -249,7 +290,7 @@ class Main extends Component {
         }}
       >
         <NavigationContainer>
-          <BottomTab />
+          <StackNavigator />
         </NavigationContainer>
       </View>
     );
