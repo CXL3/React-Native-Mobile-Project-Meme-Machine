@@ -81,7 +81,7 @@ class Login extends Component {
             style={{ marginBottom: 40 }}
             type="outline"
             title="Cancel"
-            onPress={() => navigate("PopularMemes")}
+  
           />
         </View>
         <Divider width={0.2} />

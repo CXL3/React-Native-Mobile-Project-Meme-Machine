@@ -9,13 +9,14 @@ import SignUp from "./SignUpComponent";
 import Constants from "expo-constants";
 import { View, Platform, StyleSheet, Text, ScrollView } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-// import { Icon } from "react-native-elements";
+import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
 import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const mapDispatchToProps = {
   fetchHotMemes,
@@ -27,7 +28,7 @@ const Stack = createStackNavigator();
 function StackNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="BottomTab"
+      initialRouteName="Back"
       // screenOptions={{
       //   headerMode: "screen",
       //   headerTintColor: "white",
@@ -35,7 +36,7 @@ function StackNavigator() {
       // }}
     >
       <Stack.Screen
-        name="BottomTab"
+        name="Back"
         component={BottomTab}
         options={{ headerShown: false }}
       />
@@ -210,10 +211,54 @@ const Tab = createBottomTabNavigator();
 function BottomTab() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Memes" component={MemesDrawer} options={{ headerShown: false }} />
-      <Tab.Screen name="Chat" component={ChatDrawer} options={{ headerShown: false }} />
-      <Tab.Screen name="Upload" component={UploadDrawer} options={{ headerShown: false }} />
-      <Tab.Screen name="LogIn" component={LogInDrawer} options={{ headerShown: false }} />
+      <Tab.Screen
+        name="Memes"
+        component={MemesDrawer}
+        options={{
+          tabBarLabel: "Memes",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="alien-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={ChatDrawer}
+   
+        options={{
+          tabBarLabel: "Chat",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="chat" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Upload"
+        component={UploadDrawer}
+
+        options={{
+          tabBarLabel: "Upload",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="plus" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="LogIn"
+        component={LogInDrawer}
+   
+
+        options={{
+          tabBarLabel: "LogIn",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -247,28 +292,30 @@ function MemesDrawer() {
 function ChatDrawer() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="PopularMemes" component={PopularMemes} />
       <Drawer.Screen name="Chat" component={Chat} />
+      <Drawer.Screen name="PopularMemes" component={PopularMemes} />
       <Drawer.Screen name="Upload" component={Upload} />
       <Drawer.Screen name="LogIn" component={LogIn} />
     </Drawer.Navigator>
   );
-}function UploadDrawer() {
+}
+function UploadDrawer() {
   return (
     <Drawer.Navigator>
+      <Drawer.Screen name="Upload" component={Upload} />
       <Drawer.Screen name="PopularMemes" component={PopularMemes} />
       <Drawer.Screen name="Chat" component={Chat} />
-      <Drawer.Screen name="Upload" component={Upload} />
       <Drawer.Screen name="LogIn" component={LogIn} />
     </Drawer.Navigator>
   );
-}function LogInDrawer() {
+}
+function LogInDrawer() {
   return (
     <Drawer.Navigator>
+      <Drawer.Screen name="LogIn" component={LogIn} />
       <Drawer.Screen name="PopularMemes" component={PopularMemes} />
       <Drawer.Screen name="Chat" component={Chat} />
       <Drawer.Screen name="Upload" component={Upload} />
-      <Drawer.Screen name="LogIn" component={LogIn} />
     </Drawer.Navigator>
   );
 }
