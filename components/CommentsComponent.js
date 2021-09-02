@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   CardText: {
     fontSize: 24,
-    fontFamily: "Futura",
+    // fontFamily: "Futura",
   },
   button: {
     alignItems: "center",

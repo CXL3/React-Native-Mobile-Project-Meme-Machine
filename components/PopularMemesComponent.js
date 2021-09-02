@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontSize: 25,
-    fontFamily: "Futura",
+    // fontFamily: "Futura",
     fontWeight: "bold",
   },
   imageStyle: {

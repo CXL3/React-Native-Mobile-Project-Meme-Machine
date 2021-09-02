@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     margin: 70,
   },
   text: {
-    fontSize: 20,
-    fontFamily: "Futura",
+    // fontSize: 20,
+    // fontFamily: "Futura",
     textAlign: "center",
     marginBottom: 20,
     marginTop: 80,
@@ -128,8 +128,8 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   textTitle2: {
-    fontSize: 20,
-    fontFamily: "Futura",
+    // fontSize: 20,
+    // fontFamily: "Futura",
     textAlign: "center",
     marginBottom: 20,
   },

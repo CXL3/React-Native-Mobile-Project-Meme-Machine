@@ -32,7 +32,7 @@ const PopularMemeNavigator = createStackNavigator(
             name="list"
             type="font-awesome"
             iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
+            // onPress={() => navigation.toggleDrawer()}
           />
         ),
       }),
@@ -58,16 +58,16 @@ const chatNavigator = createStackNavigator(
   {
     Chat: {
       screen: Chat,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
+      // navigationOptions: ({ navigation }) => ({
+      //   headerLeft: (
+      //     <Icon
+      //       name="list"
+      //       type="font-awesome"
+      //       iconStyle={styles.stackIcon}
+      //       onPress={() => navigation.toggleDrawer()}
+      //     />
+      //   ),
+      // }),
     },
   },
   {
@@ -86,16 +86,16 @@ const UploadNavigator = createStackNavigator(
   {
     Upload: {
       screen: Upload,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
+      // navigationOptions: ({ navigation }) => ({
+      //   headerLeft: (
+      //     <Icon
+      //       name="list"
+      //       type="font-awesome"
+      //       iconStyle={styles.stackIcon}
+            
+      //     />
+      //   ),
+      // }),
     },
   },
   {
@@ -114,16 +114,16 @@ const LogInNavigator = createStackNavigator(
   {
     LogIn: {
       screen: LogIn,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
-            name="list"
-            type="font-awesome"
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
-          />
-        ),
-      }),
+      // navigationOptions: ({ navigation }) => ({
+      //   headerLeft: (
+      //     <Icon
+      //       name="list"
+      //       type="font-awesome"
+      //       iconStyle={styles.stackIcon}
+            
+      //     />
+      //   ),
+      // }),
     },
 
     SignUp: {
@@ -173,7 +173,7 @@ const MainTabNavigator = createBottomTabNavigator(
       inactiveBackgroundColor: "#fffefc",
       activeTintColor: "#050302",
       inactiveTintColor: "#808080",
-      labelStyle: { fontSize: 18 },
+      labelStyle: { fontSize: 13 },
     },
   }
 );
@@ -224,14 +224,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
-    fontSize: 24,
+    // fontSize: 24,
     flexDirection: "row",
   },
   drawerHeaderText: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: 24,
-    fontFamily: "HelveticaNeue-ThinItalic",
+    // fontSize: 24,
+    // fontFamily: "HelveticaNeue-ThinItalic",
   },
   stackIcon: {
     marginLeft: 10,

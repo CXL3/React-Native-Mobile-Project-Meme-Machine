@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     fontSize: 30,
-    fontFamily: "TrebuchetMS-Bold",
+    // fontFamily: "TrebuchetMS-Bold",
     fontWeight: "bold",
     margin: 40,
     marginBottom: 40,
