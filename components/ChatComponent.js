@@ -1,24 +1,34 @@
 import React, { Component } from "react";
 import { ScrollView, Text } from "react-native";
+import { GiftedChat } from "react-native-gifted-chat";
 import { Card } from "react-native-elements";
 
-
 class Chat extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: [],
+    };
+  }
   static navigationOptions = {
     title: "Chat",
   };
+  onSend(messages = []) {
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }));
+  }
   render() {
     return (
-      <ScrollView>
-        <Card wrapperStyle={{ margin: 20 }} title={"Chat placebo info"}>
-          <Text>chat 1</Text>
-          <Text>chat 2</Text>
-        </Card>
-        <Card wrapperStyle={{ margin: 20 }} >
-          <Text>chat 1</Text>
-          <Text>chat 2</Text>
-        </Card>
-      </ScrollView>
+      <GiftedChat
+        messages={this.state.messages}
+        onSend={(messages) => this.onSend(messages)}
+        user={{
+
+        }}
+        showAvatarForEveryMessage={true}
+      />
     );
   }
 }
