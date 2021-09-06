@@ -8,7 +8,7 @@ import {
   Modal,
   Share,
 } from "react-native";
-import { Card, Button, Input, Icon } from "react-native-elements";
+import { Card, Button, Input, Icon, Image} from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
@@ -57,13 +57,13 @@ function RenderComments({ comments }) {
   };
 
   return (
-    <Card title="Comments">
+    <View>
       <FlatList
         data={comments}
         renderItem={renderCommentItem}
         keyExtractor={(item) => item.id.toString()}
       />
-    </Card>
+    </View>
   );
 }
 
@@ -104,59 +104,58 @@ class Comments extends Component {
     const RenderMeme = ({ hotMeme }) => {
       if (hotMeme) {
         return (
-          <Card>
-            <Card.Title style={styles.CardText}>{hotMeme.name}</Card.Title>
-            <Card.Divider />
-            <Card.Image
-              style={styles.imageStyle}
-              source={{ uri: baseUrl + hotMeme.image }}
-            ></Card.Image>
-            <View style={styles.cardRow}>
-              <Divider />
-              <Icon
-                // name={hotMeme.upvote ? "arrow-up" : "heart"}
-                name="arrow-up"
-                type="font-awesome"
-                raised
-                reverse
-                size="15"
-                color="#9d9fa3"
-                onPress={() =>
-                  hotMeme.upvote
-                    ? console.log("Already set as a upvote")
-                    : this.markUpvote()
-                }
-              />
-              <Text style={{ marginRight: 10 }}>{hotMeme.upvote}</Text>
-              <Icon
-                name="arrow-down"
-                type="font-awesome"
-                raised
-                reverse
-                size="15"
-                color="#9d9fa3"
-              />
-              <Text style={{ marginRight: 70 }}>{hotMeme.downvote}</Text>
-              <Icon
+          <View>
+            <View style={styles.titleView}>
+              <Text style={styles.titleText}>
+                {hotMeme.name}
+              </Text>
+            </View>
+
+          <Image
+            style={styles.imageStyle}
+            source={{ uri: baseUrl + hotMeme.image }}
+            resizeMode="stretch"
+          />
+          <View style={styles.cardRow}>
+            <Icon
+              name="arrow-up"
+              type="font-awesome"
+              raised
+              reverse
+              size={15}
+              color="#9d9fa3"
+            />
+            <Text style={{ marginRight: 10 }}>{hotMeme.upvote}</Text>
+            <Icon
+              name="arrow-down"
+              type="font-awesome"
+              raised
+              reverse
+              size={15}
+              color="#9d9fa3"
+            />
+            <Text style={{ marginRight: 80 }}>{hotMeme.downvote}</Text>
+             <Icon
                 name="pencil"
                 type="font-awesome"
                 raised
                 reverse
-                size="15"
+                size={15}
                 color="#9d9fa3"
                 onPress={() => this.toggleModal()}
               />
-              <Icon
-                name={"share"}
-                type="font-awesome"
-                color="#9d9fa3"
-                raised
-                size="15"
-                reverse
-                onPress={() => shareMeme(hotMeme.name, baseUrl + hotMeme.image)}
-              />
-            </View>
-          </Card>
+            <Icon
+              name={"share"}
+              type="font-awesome"
+              color="#9d9fa3"
+              raised
+              size={15}
+              reverse
+              onPress={() => shareMeme(hotMeme.name, baseUrl + hotMeme.image)}
+            />
+          </View>
+           <View style={styles.dividerView} />
+        </View>
         );
       }
       return <View />;
@@ -240,10 +239,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 6,
   },
-  CardText: {
-    fontSize: 24,
-    // fontFamily: "Futura",
+  titleView: {
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 19,
   },
+  titleText: {
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 25,
+    // fontFamily: "Futura",
+    fontWeight: "bold",
+  },
+  // CardText: {
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   margin: 19,
+  // },
   button: {
     alignItems: "center",
     width: null,
@@ -251,10 +263,15 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   imageStyle: {
+    padding: 0,
+    margin: 0,
     width: null,
     flex: 1,
-    height: 345,
-    resizeMode: "contain",
+    height: 365,
+  },
+  dividerView: {
+    height: 10,
+    backgroundColor: "#e6e6e6",
   },
   modalTitle: {
     fontSize: 24,

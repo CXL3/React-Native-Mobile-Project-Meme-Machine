@@ -16,6 +16,7 @@ import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
 import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const mapDispatchToProps = {
   fetchHotMemes,
@@ -92,7 +93,7 @@ const UploadNavigator = createStackNavigator(
       //       name="list"
       //       type="font-awesome"
       //       iconStyle={styles.stackIcon}
-            
+
       //     />
       //   ),
       // }),
@@ -114,16 +115,6 @@ const LogInNavigator = createStackNavigator(
   {
     LogIn: {
       screen: LogIn,
-      // navigationOptions: ({ navigation }) => ({
-      //   headerLeft: (
-      //     <Icon
-      //       name="list"
-      //       type="font-awesome"
-      //       iconStyle={styles.stackIcon}
-            
-      //     />
-      //   ),
-      // }),
     },
 
     SignUp: {
@@ -162,10 +153,44 @@ const CustomDrawerContentComponent = (props) => (
 );
 const MainTabNavigator = createBottomTabNavigator(
   {
-    Memes: { screen: PopularMemeNavigator },
-    Chat: { screen: chatNavigator },
-    Upload: { screen: UploadNavigator },
-    LogIn: { screen: LogInNavigator },
+    Memes: {
+      screen: PopularMemeNavigator,
+      navigationOptions: {
+        tabBarLabel: "Memes",
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons
+            name="alien-outline"
+            color={color}
+            size={19}
+          />
+        ),
+      },
+    },
+    Chat: {
+      screen: chatNavigator,
+      navigationOptions: {
+        tabBarLabel: "Chat",
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="chat" color={color} size={19} />
+        ),
+      },
+    },
+    Upload: {
+      screen: UploadNavigator,
+      navigationOptions: {
+        tabBarLabel: "Upload",
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="plus" color={color} size={19} />
+        ),
+      },
+    },
+    LogIn: { screen: LogInNavigator,
+      navigationOptions: {
+        tabBarLabel: "LogIn",
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="account" color={color} size={19} />
+        ),
+      }, },
   },
   {
     tabBarOptions: {
@@ -208,6 +233,7 @@ class Main extends Component {
           paddingBottom: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
         }}
       >
+        
         <AppNavigator />
       </View>
     );

@@ -43,7 +43,7 @@ class PopularMemes extends Component {
           </View>
 
           <Image
-            style={styles.imageStyle}
+            style={styles.imageStyle}ç
             source={{ uri: baseUrl + item.image }}
             resizeMode="stretch"
             onPress={() => navigate("Comments", { hotMemeId: item.id })}
@@ -54,7 +54,7 @@ class PopularMemes extends Component {
               type="font-awesome"
               raised
               reverse
-              size="15"
+              size={15}
               color="#9d9fa3"
             />
             <Text style={{ marginRight: 10 }}>{item.upvote}</Text>
@@ -63,7 +63,7 @@ class PopularMemes extends Component {
               type="font-awesome"
               raised
               reverse
-              size="15"
+              size={15}
               color="#9d9fa3"
             />
             <Text style={{ marginRight: 80 }}>{item.downvote}</Text>
@@ -72,7 +72,7 @@ class PopularMemes extends Component {
               type="font-awesome"
               raised
               reverse
-              size="15"
+              size={15}
               color="#9d9fa3"
               onPress={() => navigate("Comments", { hotMemeId: item.id })}
             />
@@ -81,7 +81,7 @@ class PopularMemes extends Component {
               type="font-awesome"
               color="#9d9fa3"
               raised
-              size="15"
+              size={15}
               reverse
               onPress={() => shareMeme(item.name, baseUrl + item.image)}
             />
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 365,
   },
+
   dividerView: {
     height: 10,
     backgroundColor: "#e6e6e6",
