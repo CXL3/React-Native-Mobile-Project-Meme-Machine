@@ -6,7 +6,7 @@ import { baseUrl } from "../shared/baseUrl";
 
 const mapStateToProps = (state) => {
   return {
-    hotMemes: state.hotMemes,
+    memes: state.memes,
   };
 };
 const shareMeme = (title, url) => {
@@ -30,13 +30,13 @@ class PopularMemes extends Component {
     // const dimensions = Dimensions.get("window");
     // const imageHeight = dimensions.width / 680;
     // const imageWidth = dimensions.width;
-    const renderHotMemesItem = ({ item }) => {
+    const rendermemesItem = ({ item }) => {
       return (
         <View>
           <View style={styles.titleView}>
             <Text
               style={styles.titleText}
-              onPress={() => navigate("Comments", { hotMemeId: item.id })}
+              onPress={() => navigate("Comments", { memeId: item.id })}
             >
               {item.name}
             </Text>
@@ -46,7 +46,7 @@ class PopularMemes extends Component {
             style={styles.imageStyle}ç
             source={{ uri: baseUrl + item.image }}
             resizeMode="stretch"
-            onPress={() => navigate("Comments", { hotMemeId: item.id })}
+            onPress={() => navigate("Comments", { memeId: item.id })}
           />
           <View style={styles.cardRow}>
             <Icon
@@ -74,7 +74,7 @@ class PopularMemes extends Component {
               reverse
               size={15}
               color="#9d9fa3"
-              onPress={() => navigate("Comments", { hotMemeId: item.id })}
+              onPress={() => navigate("Comments", { memeId: item.id })}
             />
             <Icon
               name={"share"}
@@ -93,8 +93,8 @@ class PopularMemes extends Component {
 
     return (
       <FlatList
-        data={this.props.hotMemes.hotMemes}
-        renderItem={renderHotMemesItem}
+        data={this.props.memes.memes}
+        renderItem={rendermemesItem}
         keyExtractor={(item) => item.id.toString()}
       />
     );

@@ -14,12 +14,12 @@ import { createAppContainer } from "react-navigation";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
 import { connect } from "react-redux";
-import { fetchHotMemes, fetchComments } from "../redux/ActionCreators";
+import { fetchMemes, fetchComments } from "../redux/ActionCreators";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const mapDispatchToProps = {
-  fetchHotMemes,
+  fetchMemes,
   fetchComments,
 };
 
@@ -220,7 +220,7 @@ const AppNavigator = createAppContainer(MainTabNavigator);
 
 class Main extends Component {
   componentDidMount() {
-    this.props.fetchHotMemes();
+    this.props.fetchMemes();
     this.props.fetchComments();
   }
 

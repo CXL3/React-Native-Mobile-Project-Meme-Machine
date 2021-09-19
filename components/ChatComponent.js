@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { ScrollView, Text } from "react-native";
 import { GiftedChat } from "react-native-gifted-chat";
-import { Card } from "react-native-elements";
+
 
 class Chat extends Component {
   constructor(props) {

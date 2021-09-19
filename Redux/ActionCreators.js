@@ -40,9 +40,9 @@ export const addComment = (comment) => ({
   payload: comment,
 });
 
-export const postComment = (hotMemeId, author, text) => (dispatch) => {
+export const postComment = (memeId, author, text) => (dispatch) => {
   const newComment = {
-    hotMemeId,
+    memeId,
     author,
     text,
   };
@@ -51,10 +51,10 @@ export const postComment = (hotMemeId, author, text) => (dispatch) => {
   setTimeout(() => dispatch(addComment(newComment)), 50);
 };
 
-export const fetchHotMemes = () => (dispatch) => {
-  dispatch(hotMemesLoading());
+export const fetchMemes = () => (dispatch) => {
+  dispatch(memesLoading());
 
-  return fetch(baseUrl + "hotMemes")
+  return fetch(baseUrl + "memes")
     .then(
       (response) => {
         if (response.ok) {
@@ -73,35 +73,35 @@ export const fetchHotMemes = () => (dispatch) => {
       }
     )
     .then((response) => response.json())
-    .then((hotMemes) => dispatch(addHotMemes(hotMemes)))
-    .catch((error) => dispatch(hotMemesFailed(error.message)));
+    .then((memes) => dispatch(addMemes(memes)))
+    .catch((error) => dispatch(memesFailed(error.message)));
 };
 
-export const hotMemesLoading = () => ({
-  type: ActionTypes.HOTMEMES_LOADING,
+export const memesLoading = () => ({
+  type: ActionTypes.MEMES_LOADING,
 });
 
-export const hotMemesFailed = (errMess) => ({
-  type: ActionTypes.HOTMEMES_FAILED,
+export const memesFailed = (errMess) => ({
+  type: ActionTypes.MEMES_FAILED,
   payload: errMess,
 });
 
-export const addHotMemes = (hotMemes) => ({
-  type: ActionTypes.ADD_HOTMEMES,
-  payload: hotMemes,
+export const addMemes = (memes) => ({
+  type: ActionTypes.ADD_MEMES,
+  payload: memes,
 });
 
-export const postUpvote = (hotMemeId) => (dispatch) => {
+export const postUpvote = (memeId) => (dispatch) => {
   setTimeout(() => {
-    dispatch(addUpvote(hotMemeId));
+    dispatch(addUpvote(memeId));
   }, 500);
 };
 
-export const addUpvote = (hotMemeId) => ({
+export const addUpvote = (memeId) => ({
   type: ActionTypes.ADD_UPVOTE,
-  payload: hotMemeId,
+  payload: memeId,
 });
-export const deleteUpvote = (hotMemeId) => ({
+export const deleteUpvote = (memeId) => ({
   type: ActionTypes.DELETE_UPVOTE,
-  payload: hotMemeId,
+  payload: memeId,
 });

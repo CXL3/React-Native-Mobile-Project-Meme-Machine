@@ -1,6 +1,6 @@
-export const HOTMEMES_LOADING = 'HOTMEMES_LOADING';
-export const ADD_HOTMEMES = 'ADD_HOTMEMES';
-export const HOTMEMES_FAILED = 'HOTMEMES_FAILED';
+export const MEMES_LOADING = 'MEMES_LOADING';
+export const ADD_MEMES = 'ADD_MEMES';
+export const MEMES_FAILED = 'MEMES_FAILED';
 
 export const ADD_COMMENTS = 'ADD_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';

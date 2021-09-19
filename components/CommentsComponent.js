@@ -18,16 +18,16 @@ import { postComment, postUpvote } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
   return {
-    hotMemes: state.hotMemes,
+    memes: state.memes,
     comments: state.comments,
     upvotes: state.upvotes,
   };
 };
 
 const mapDispatchToProps = {
-  postComment: (hotMemeId, author, text) =>
-    postComment(hotMemeId, author, text),
-  postUpvote: (hotMemeId) => postUpvote(hotMemeId),
+  postComment: (memeId, author, text) =>
+    postComment(memeId, author, text),
+  postUpvote: (memeId) => postUpvote(memeId),
 };
 
 const shareMeme = (title, url) => {
@@ -51,7 +51,7 @@ function RenderComments({ comments }) {
         >{` ${item.author}, ${item.date}`}</Text>
         <Text style={{ fontSize: 18 }}>{item.text}</Text>
 
-        <Divider />
+        <Divider style={{ height: 20}}/>
       </View>
     );
   };
@@ -81,8 +81,8 @@ class Comments extends Component {
   toggleModal() {
     this.setState({ showModal: !this.state.showModal });
   }
-  handleComment(hotMemeId) {
-    this.props.postComment(hotMemeId, this.state.author, this.state.text);
+  handleComment(memeId) {
+    this.props.postComment(memeId, this.state.author, this.state.text);
     this.toggleModal();
   }
 
@@ -94,26 +94,26 @@ class Comments extends Component {
     });
   }
 
-  markUpvote(hotMemeId) {
-    this.props.postUpvote(hotMemeId);
+  markUpvote(memeId) {
+    this.props.postUpvote(memeId);
   }
   static navigationOptions = {
     title: "Comments",
   };
   render() {
-    const RenderMeme = ({ hotMeme }) => {
-      if (hotMeme) {
+    const RenderMeme = ({ meme }) => {
+      if (meme) {
         return (
           <View>
             <View style={styles.titleView}>
               <Text style={styles.titleText}>
-                {hotMeme.name}
+                {meme.name}
               </Text>
             </View>
 
           <Image
             style={styles.imageStyle}
-            source={{ uri: baseUrl + hotMeme.image }}
+            source={{ uri: baseUrl + meme.image }}
             resizeMode="stretch"
           />
           <View style={styles.cardRow}>
@@ -125,7 +125,7 @@ class Comments extends Component {
               size={15}
               color="#9d9fa3"
             />
-            <Text style={{ marginRight: 10 }}>{hotMeme.upvote}</Text>
+            <Text style={{ marginRight: 10 }}>{meme.upvote}</Text>
             <Icon
               name="arrow-down"
               type="font-awesome"
@@ -134,7 +134,7 @@ class Comments extends Component {
               size={15}
               color="#9d9fa3"
             />
-            <Text style={{ marginRight: 80 }}>{hotMeme.downvote}</Text>
+            <Text style={{ marginRight: 80 }}>{meme.downvote}</Text>
              <Icon
                 name="pencil"
                 type="font-awesome"
@@ -151,7 +151,7 @@ class Comments extends Component {
               raised
               size={15}
               reverse
-              onPress={() => shareMeme(hotMeme.name, baseUrl + hotMeme.image)}
+              onPress={() => shareMeme(meme.name, baseUrl + meme.image)}
             />
           </View>
            <View style={styles.dividerView} />
@@ -161,21 +161,21 @@ class Comments extends Component {
       return <View />;
     };
 
-    const hotMemeId = this.props.navigation.getParam("hotMemeId");
-    const hotMeme = this.props.hotMemes.hotMemes.filter(
-      (hotMeme) => hotMeme.id === hotMemeId
+    const memeId = this.props.navigation.getParam("memeId");
+    const meme = this.props.memes.memes.filter(
+      (meme) => meme.id === memeId
     )[0];
     const comments = this.props.comments.comments.filter(
-      (comment) => comment.hotMemeId === hotMemeId
+      (comment) => comment.memeId === memeId
     );
 
     
     return (
       <ScrollView>
         <RenderMeme
-          hotMeme={hotMeme}
-          upvote={this.props.upvotes.includes(hotMemeId)}
-          markUpvote={() => this.markUpvote(hotMemeId)}
+          meme={meme}
+          upvote={this.props.upvotes.includes(memeId)}
+          markUpvote={() => this.markUpvote(memeId)}
         />
 
         <RenderComments comments={comments} />
@@ -209,7 +209,7 @@ class Comments extends Component {
               <Button
                 style={{ margin: 10 }}
                 onPress={() => {
-                  this.handleComment(hotMemeId);
+                  this.handleComment(memeId);
                   this.resetForm();
                 }}
                 color="#5637DD"

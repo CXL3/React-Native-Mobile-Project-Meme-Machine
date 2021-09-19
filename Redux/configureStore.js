@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { hotMemes } from "./hotMemes";
+import { memes } from "./memes";
 import { comments } from "./comments";
 import { upvotes } from "./upvotes";
 import { persistStore, persistCombineReducers } from "redux-persist";
@@ -17,7 +17,7 @@ const config = {
 export const ConfigureStore = () => {
   const store = createStore(
     persistCombineReducers(config, {
-      hotMemes,
+      memes,
       comments,
       upvotes,
     }),
