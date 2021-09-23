@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, View, Text, Share, } from "react-native";
+import { FlatList,ScrollView, StyleSheet, View, Text, Share, } from "react-native";
 import { Icon, Image } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
@@ -44,7 +44,7 @@ class PopularMemes extends Component {
 
           <Image
             style={styles.imageStyle}ç
-            src={baseUrl + item.image} alt={item.image}
+            // source={baseUrl + item.image} alt={item.image}
             source={{ uri: baseUrl + item.image }}
             resizeMode="stretch"
             onPress={() => navigate("Comments", { memeId: item.id })}
@@ -96,11 +96,12 @@ class PopularMemes extends Component {
       <FlatList
         data={this.props.memes.memes}
         renderItem={rendermemesItem}
-        keyExtractor={(item) => item.id.toString()}
+        // keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id}
       />
     );
   }
-}
+}                                           
 const styles = StyleSheet.create({
   cardRow: {
     alignItems: "center",

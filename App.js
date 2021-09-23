@@ -17,16 +17,3 @@ export default function App() {
     </Provider>
   );
 }
-const purge = () => {
-  return new Promise((resolve, reject) => {
-    // Purge RAM cached reducer states
-    store.dispatch({ type: "RESET" });
-
-    // Purge disk cached reducer states
-    const persistor = persist(store, {}, (err) => {
-      if (err) reject(err);
-      resolve();
-    });
-    persistor.purge(); // v5 returns a promise, might want to await
-  });
-};
