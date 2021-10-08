@@ -4,6 +4,7 @@ import logger from "redux-logger";
 import { memes } from "./memes";
 import { comments } from "./comments";
 import { upvotes } from "./upvotes";
+import { Auth } from './auth';
 import { persistStore, persistCombineReducers } from "redux-persist";
 import storage from "redux-persist/es/storage";
 
@@ -20,6 +21,7 @@ export const ConfigureStore = () => {
       memes,
       comments,
       upvotes,
+      auth: Auth,
     }),
     applyMiddleware(thunk, logger)
   );
