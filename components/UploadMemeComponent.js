@@ -43,6 +43,8 @@ class Upload extends Component {
       imageUrl: baseUrl + "images/sample.jpg",
     });
   }
+
+
   handleAlert() {
     Alert.alert(
       "Alert",

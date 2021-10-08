@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   postComment: (memeId, author, text) =>
     postComment(memeId, author, text),
-  postUpvote: (memeId) => postUpvote(memeId),
+  
 };
 
 const shareMeme = (title, url) => {
@@ -125,7 +125,7 @@ class Comments extends Component {
               size={15}
               color="#9d9fa3"
             />
-            <Text style={{ marginRight: 10 }}>{meme.upvote}</Text>
+            <Text style={{ marginRight: 10 }}>{meme.upvotes}</Text>
             <Icon
               name="arrow-down"
               type="font-awesome"
@@ -134,7 +134,7 @@ class Comments extends Component {
               size={15}
               color="#9d9fa3"
             />
-            <Text style={{ marginRight: 80 }}>{meme.downvote}</Text>
+            <Text style={{ marginRight: 80 }}>{meme.downvotes}</Text>
              <Icon
                 name="pencil"
                 type="font-awesome"

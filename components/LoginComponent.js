@@ -75,7 +75,14 @@ class Login extends Component {
           containerStyle={styles.formCheckbox}
         />
         <View style={{ marginTop: 30 }}>
-          <Button style={{ marginBottom: 20 }} color="#5637DD" title="Log In" />
+          <Button
+            style={{ marginBottom: 20 }}
+            color="#5637DD"
+            title="Log In"
+            onPress={() => {
+              this.handleLogin;
+            }}
+          />
 
           <Button style={{ marginBottom: 40 }} type="outline" title="Cancel" />
         </View>

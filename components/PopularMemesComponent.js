@@ -58,7 +58,7 @@ class PopularMemes extends Component {
               size={15}
               color="#9d9fa3"
             />
-            <Text style={{ marginRight: 10 }}>{item.upvote}</Text>
+            <Text style={{ marginRight: 10 }}>{item.upvotes}</Text>
             <Icon
               name="arrow-down"
               type="font-awesome"
@@ -67,7 +67,7 @@ class PopularMemes extends Component {
               size={15}
               color="#9d9fa3"
             />
-            <Text style={{ marginRight: 80 }}>{item.downvote}</Text>
+            <Text style={{ marginRight: 80 }}>{item.downvotes}</Text>
             <Icon
               name="comments"
               type="font-awesome"
