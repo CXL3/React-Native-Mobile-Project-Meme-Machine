@@ -7,14 +7,13 @@ import {
   StyleSheet,
   Modal,
   Share,
+  TextInput,
 } from "react-native";
-import { Card, Button, Input, Icon, Image} from "react-native-elements";
+import { Card, Button, Input, Icon, Image } from "react-native-elements";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postComment, postUpvote } from "../redux/ActionCreators";
-
-
 
 const mapStateToProps = (state) => {
   return {
@@ -25,9 +24,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  postComment: (memeId, author, text) =>
-    postComment(memeId, author, text),
-  
+  postComment: (memeId, author, text) => postComment(memeId, author, text),
 };
 
 const shareMeme = (title, url) => {
@@ -51,7 +48,7 @@ function RenderComments({ comments }) {
         >{` ${item.author}, ${item.date}`}</Text>
         <Text style={{ fontSize: 18 }}>{item.text}</Text>
 
-        <Divider style={{ height: 20}}/>
+        <Divider style={{ height: 20 }} />
       </View>
     );
   };
@@ -74,7 +71,7 @@ class Comments extends Component {
       author: "",
       text: "",
       showModal: false,
-      upvote:"",
+      upvote: "",
     };
   }
 
@@ -90,7 +87,6 @@ class Comments extends Component {
     this.setState({
       author: "",
       text: "",
-      
     });
   }
 
@@ -106,36 +102,34 @@ class Comments extends Component {
         return (
           <View>
             <View style={styles.titleView}>
-              <Text style={styles.titleText}>
-                {meme.name}
-              </Text>
+              <Text style={styles.titleText}>{meme.name}</Text>
             </View>
 
-          <Image
-            style={styles.imageStyle}
-            source={{ uri: baseUrl + meme.image }}
-            resizeMode="stretch"
-          />
-          <View style={styles.cardRow}>
-            <Icon
-              name="arrow-up"
-              type="font-awesome"
-              raised
-              reverse
-              size={15}
-              color="#9d9fa3"
+            <Image
+              style={styles.imageStyle}
+              source={{ uri: baseUrl + meme.image }}
+              resizeMode="stretch"
             />
-            <Text style={{ marginRight: 10 }}>{meme.upvotes}</Text>
-            <Icon
-              name="arrow-down"
-              type="font-awesome"
-              raised
-              reverse
-              size={15}
-              color="#9d9fa3"
-            />
-            <Text style={{ marginRight: 80 }}>{meme.downvotes}</Text>
-             <Icon
+            <View style={styles.cardRow}>
+              <Icon
+                name="arrow-up"
+                type="font-awesome"
+                raised
+                reverse
+                size={15}
+                color="#9d9fa3"
+              />
+              <Text style={{ marginRight: 10 }}>{meme.upvotes}</Text>
+              <Icon
+                name="arrow-down"
+                type="font-awesome"
+                raised
+                reverse
+                size={15}
+                color="#9d9fa3"
+              />
+              <Text style={{ marginRight: 80 }}>{meme.downvotes}</Text>
+              <Icon
                 name="pencil"
                 type="font-awesome"
                 raised
@@ -144,32 +138,29 @@ class Comments extends Component {
                 color="#9d9fa3"
                 onPress={() => this.toggleModal()}
               />
-            <Icon
-              name={"share"}
-              type="font-awesome"
-              color="#9d9fa3"
-              raised
-              size={15}
-              reverse
-              onPress={() => shareMeme(meme.name, baseUrl + meme.image)}
-            />
+              <Icon
+                name={"share"}
+                type="font-awesome"
+                color="#9d9fa3"
+                raised
+                size={15}
+                reverse
+                onPress={() => shareMeme(meme.name, baseUrl + meme.image)}
+              />
+            </View>
+            <View style={styles.dividerView} />
           </View>
-           <View style={styles.dividerView} />
-        </View>
         );
       }
       return <View />;
     };
 
     const memeId = this.props.navigation.getParam("memeId");
-    const meme = this.props.memes.memes.filter(
-      (meme) => meme.id === memeId
-    )[0];
+    const meme = this.props.memes.memes.filter((meme) => meme.id === memeId)[0];
     const comments = this.props.comments.comments.filter(
       (comment) => comment.memeId === memeId
     );
 
-    
     return (
       <ScrollView>
         <RenderMeme
@@ -179,6 +170,11 @@ class Comments extends Component {
         />
 
         <RenderComments comments={comments} />
+        <View>
+          <TextInput style={styles.input} placeholder="Tap here" />
+          <Button>Send</Button>
+        </View>
+
         <Modal
           animationType={"slide"}
           transparent={false}

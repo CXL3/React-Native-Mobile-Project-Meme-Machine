@@ -1,12 +1,11 @@
 import * as ActionTypes from './ActionTypes';
 
-
 export const Auth = (state = {
         isLoading: false,
-        isAuthenticated: localStorage.getItem('token') ? true : false,
-        token: localStorage.getItem('token'),
-        user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
-        errMess: null
+        // isAuthenticated: localStorage.getItem('token') ? true : false,
+        // token: localStorage.getItem('token'),
+        // user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
+        // errMess: null
     }, action) => {
     switch (action.type) {
         case ActionTypes.LOGIN_REQUEST:
