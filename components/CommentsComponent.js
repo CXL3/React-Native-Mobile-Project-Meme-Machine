@@ -171,8 +171,22 @@ class Comments extends Component {
 
         <RenderComments comments={comments} />
         <View>
-          <TextInput style={styles.input} placeholder="Tap here" />
-          <Button>Send</Button>
+          <TextInput placeholder="Comment"
+              multiline={true}
+              numberOfLines={4}
+              leftIcon={{ type: "font-awesome", name: "comment-o" }}
+              leftIconContainerStyle={{ paddingRight: 10 }}
+              onChangeText={(text) => this.setState({ text: text })}
+              value={this.state.text} />
+            <Button
+                style={{ margin: 10 }}
+                onPress={() => {
+                  this.handleComment(memeId);
+                  this.resetForm();
+                }}
+                color="#5637DD"
+                title="Submit"
+              />
         </View>
 
         <Modal
